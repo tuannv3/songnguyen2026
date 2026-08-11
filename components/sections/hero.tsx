@@ -88,16 +88,36 @@ export function Hero() {
 
                 <Container className="relative flex flex-col items-center gap-14 py-24 md:py-32 lg:flex-row lg:items-center lg:gap-10 lg:py-36">
                   <div className="max-w-xl text-center lg:text-left">
-                    <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.3em] text-accent-light">
+                    <p
+                      className={clsx(
+                        "mb-5 inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.3em] text-accent-light",
+                        active ? "animate-hero-in-1" : "opacity-0 translate-y-12"
+                      )}
+                    >
                       {slide.eyebrow[locale]}
                     </p>
-                    <h1 className="font-serif-display text-4xl leading-[1.1] text-white text-balance md:text-5xl lg:text-6xl">
+                    <h1
+                      className={clsx(
+                        "font-serif-display text-4xl leading-[1.1] text-white text-balance md:text-5xl lg:text-6xl",
+                        active ? "animate-hero-in-2" : "opacity-0 translate-y-12"
+                      )}
+                    >
                       {slide.title[locale]}
                     </h1>
-                    <p className="mt-6 text-base leading-relaxed text-white/70 md:text-lg">
+                    <p
+                      className={clsx(
+                        "mt-6 text-base leading-relaxed text-white/70 md:text-lg",
+                        active ? "animate-hero-in-3" : "opacity-0 translate-y-12"
+                      )}
+                    >
                       {slide.subtitle[locale]}
                     </p>
-                    <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
+                    <div
+                      className={clsx(
+                        "mt-9 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start",
+                        active ? "animate-hero-in-4" : "opacity-0 translate-y-12"
+                      )}
+                    >
                       <Button href={slide.ctaPrimary.href} size="lg" tabIndex={active ? 0 : -1}>
                         {slide.ctaPrimary.label[locale]}
                         <ArrowRight className="h-4 w-4" />
