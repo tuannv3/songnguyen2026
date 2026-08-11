@@ -1,6 +1,6 @@
 import type { Bilingual } from "@/lib/i18n/types";
 
-export type ProductCategory = "single" | "blend" | "gift" | "accessory";
+export type ProductCategory = "single" | "blend" | "gift" | "accessory" | "car";
 
 export type Product = {
   slug: string;
@@ -10,6 +10,9 @@ export type Product = {
   priceFrom: number; // VND
   volume: string;
   bottleColor: string;
+  bottleVariant?: "dropper" | "diffuser" | "car";
+  /** Path under /public, e.g. "/products/tinh-dau-cam.jpg". When set, replaces the illustrated placeholder with a real photo. */
+  image?: string;
   accentColor: string;
   shortDescription: Bilingual;
   description: Bilingual;
@@ -26,6 +29,7 @@ export const categoryLabels: Record<ProductCategory, Bilingual> = {
   blend: { vi: "Tinh dầu phối hương", en: "Signature Blends" },
   gift: { vi: "Bộ quà tặng doanh nghiệp", en: "Corporate Gift Sets" },
   accessory: { vi: "Phụ kiện khuếch tán", en: "Diffuser Accessories" },
+  car: { vi: "Tinh dầu treo xe & khuếch tán", en: "Car & Diffuser Scents" },
 };
 
 export const products: Product[] = [
@@ -283,6 +287,7 @@ export const products: Product[] = [
     priceFrom: 890000,
     volume: "3 x 10ml + máy khuếch tán mini",
     bottleColor: "#B6924F",
+    image: "/products/qua-tang-doanh-nghiep.jpg",
     accentColor: "#F1E6CC",
     shortDescription: {
       vi: "Bộ 3 tinh dầu signature cùng máy khuếch tán mini, hộp in logo theo yêu cầu.",
@@ -395,6 +400,264 @@ export const products: Product[] = [
     origin: { vi: "Thiết kế độc quyền Song Nguyên", en: "Song Nguyên exclusive design" },
     extraction: { vi: "—", en: "—" },
     caution: { vi: "Không đổ tinh dầu nguyên chất trực tiếp vào bình chứa.", en: "Do not pour undiluted oil directly into the water tank." },
+  },
+  {
+    slug: "tinh-dau-treo-xe-sa",
+    name: { vi: "Tinh Dầu Hương Sả", en: "Lemongrass Essential Oil — Grass Scent" },
+    category: "car",
+    badge: "bestseller",
+    priceFrom: 65000,
+    volume: "5ml / 8ml (treo xe) · 20ml / 50ml (chai)",
+    bottleColor: "#4C8A6A",
+    bottleVariant: "car",
+    accentColor: "#DCEEE0",
+    shortDescription: {
+      vi: "Thanh lọc không khí, xua muỗi tự nhiên, thư giãn giảm stress.",
+      en: "Purifies the air, naturally repels insects and eases stress.",
+    },
+    description: {
+      vi: "Tinh dầu hương Sả nguyên chất 100% từ thiên nhiên, sẵn có ở dạng treo xe tiện lợi (5ml, 8ml) và chai tinh dầu khuếch tán (20ml, 50ml). Hương thơm the mát giúp thanh lọc không khí, loại bỏ mùi khó chịu và mang lại cảm giác dễ chịu cho mọi không gian.",
+      en: "100% pure natural lemongrass essential oil, available as a convenient car hanging diffuser (5ml, 8ml) and as a bottle for home diffusers (20ml, 50ml). Its crisp aroma purifies the air, removes unpleasant odors and brings a pleasant feeling to any space.",
+    },
+    benefits: [
+      { vi: "Thanh lọc không khí, loại bỏ mùi khó chịu", en: "Purifies air and removes unpleasant odors" },
+      { vi: "Thư giãn, giảm stress, cân bằng cảm xúc", en: "Relaxes, reduces stress and balances mood" },
+      { vi: "Lưu hương dài lâu, lan tỏa bền bỉ", en: "Long-lasting, steadily diffusing fragrance" },
+    ],
+    howToUse: {
+      vi: "Treo trực tiếp trong xe hơi, hoặc nhỏ 5–8 giọt vào máy khuếch tán tại phòng khách, phòng ngủ, phòng làm việc.",
+      en: "Hang directly in your car, or add 5–8 drops to a diffuser in the living room, bedroom or office.",
+    },
+    ingredients: { vi: "100% tinh dầu Sả nguyên chất, chiết xuất thiên nhiên, Organic", en: "100% pure Lemongrass oil, natural extract, Organic" },
+    origin: { vi: "Nguồn nguyên liệu thiên nhiên Việt Nam", en: "Natural botanicals sourced in Vietnam" },
+    extraction: { vi: "Chưng cất hơi nước", en: "Steam distillation" },
+    caution: { vi: "Không phun/nhỏ trực tiếp lên da hoặc bề mặt nội thất xe.", en: "Do not spray or drip directly onto skin or car interior surfaces." },
+  },
+  {
+    slug: "tinh-dau-que-thanh",
+    name: { vi: "Tinh Dầu Quế Thanh", en: "Cinnamon Essential Oil — Cinnamon Rever" },
+    category: "car",
+    priceFrom: 95000,
+    volume: "50ml (chai khuếch tán gỗ)",
+    bottleColor: "#A15A3A",
+    bottleVariant: "dropper",
+    image: "/products/tinh-dau-que-thanh.jpg",
+    accentColor: "#F0DCCB",
+    shortDescription: {
+      vi: "Ấm áp và đầy năng lượng — hương quế ngọt, cay nhẹ, ấm nồng.",
+      en: "Warm and energizing — sweet, lightly spicy cinnamon bark aroma.",
+    },
+    description: {
+      vi: "Mùi hương ngọt, cay nhẹ, ấm nồng đặc trưng của vỏ quế tạo cảm giác gần gũi và trấn an. Sưởi ấm không gian, giúp thư giãn và lan tỏa cảm giác dễ chịu trong những ngày mưa lạnh.",
+      en: "A sweet, lightly spicy, warm aroma characteristic of cinnamon bark, creating a comforting, reassuring feeling. Warms up any space, aids relaxation and spreads a pleasant feeling on cold, rainy days.",
+    },
+    benefits: [
+      { vi: "Sưởi ấm không gian sống", en: "Warms up your living space" },
+      { vi: "Giúp thư giãn tinh thần", en: "Supports mental relaxation" },
+      { vi: "Lan tỏa cảm giác gần gũi, dễ chịu", en: "Spreads a comforting, pleasant feeling" },
+    ],
+    howToUse: {
+      vi: "Nhỏ 5–8 giọt vào máy khuếch tán, đặt tại phòng khách hoặc phòng ngủ vào mùa lạnh.",
+      en: "Add 5–8 drops to a diffuser, placed in the living room or bedroom during colder months.",
+    },
+    ingredients: { vi: "100% tinh dầu Quế Thanh nguyên chất, Organic", en: "100% pure Cinnamon oil, Organic" },
+    origin: { vi: "Nguồn nguyên liệu thiên nhiên Việt Nam", en: "Natural botanicals sourced in Vietnam" },
+    extraction: { vi: "Chưng cất hơi nước", en: "Steam distillation" },
+    caution: { vi: "Nồng độ cao, không thoa trực tiếp lên da khi chưa pha loãng.", en: "High potency — do not apply undiluted to skin." },
+  },
+  {
+    slug: "tinh-dau-huong-thao",
+    name: { vi: "Tinh Dầu Hương Thảo", en: "Rosemary Essential Oil — Rosemary Haven" },
+    category: "car",
+    priceFrom: 95000,
+    volume: "50ml (chai khuếch tán gỗ)",
+    bottleColor: "#5C7F6E",
+    bottleVariant: "dropper",
+    image: "/products/tinh-dau-huong-thao.jpg",
+    accentColor: "#DCE7DE",
+    shortDescription: {
+      vi: "Tỉnh táo và sáng suốt — hương thảo mộc nhẹ, hơi the mát.",
+      en: "Alert and clear-minded — a light herbal, slightly cooling aroma.",
+    },
+    description: {
+      vi: "Hương thảo mộc nhẹ nhàng, hơi the mát, phảng phất mùi rừng khô, rất dễ chịu và tươi mới. Giúp tập trung tinh thần và có đặc tính kháng khuẩn nhẹ.",
+      en: "A gentle herbal scent with a light cooling touch and a hint of dry woodland — refreshing and pleasant. Helps sharpen focus and offers mild antibacterial properties.",
+    },
+    benefits: [
+      { vi: "Hỗ trợ tập trung tinh thần", en: "Supports mental focus" },
+      { vi: "Kháng khuẩn nhẹ, thanh lọc không khí", en: "Mild antibacterial, purifies air" },
+      { vi: "Hương thơm tươi mới, sảng khoái", en: "Fresh, invigorating fragrance" },
+    ],
+    howToUse: {
+      vi: "Nhỏ 5–8 giọt vào máy khuếch tán tại không gian làm việc để tăng sự tập trung.",
+      en: "Add 5–8 drops to a diffuser in your workspace to boost focus.",
+    },
+    ingredients: { vi: "100% tinh dầu Hương Thảo nguyên chất, Organic", en: "100% pure Rosemary oil, Organic" },
+    origin: { vi: "Nguồn nguyên liệu thiên nhiên Việt Nam", en: "Natural botanicals sourced in Vietnam" },
+    extraction: { vi: "Chưng cất hơi nước", en: "Steam distillation" },
+    caution: { vi: "Không dùng cho phụ nữ mang thai và người bị động kinh.", en: "Avoid use during pregnancy or for those with epilepsy." },
+  },
+  {
+    slug: "tinh-dau-trac-bach-diep",
+    name: { vi: "Tinh Dầu Trắc Bách Diệp", en: "Cypress Essential Oil — Cypress Whisper" },
+    category: "car",
+    badge: "new",
+    priceFrom: 145000,
+    volume: "100ml (chai khuếch tán gỗ)",
+    bottleColor: "#3E5F6E",
+    bottleVariant: "dropper",
+    image: "/products/tinh-dau-trac-bach-diep.jpg",
+    accentColor: "#D6E4E8",
+    shortDescription: {
+      vi: "Thư giãn sâu và cân bằng cảm xúc — hương mộc mạc, thanh mát.",
+      en: "Deep relaxation and emotional balance — an earthy, cool aroma.",
+    },
+    description: {
+      vi: "Hương mộc mạc, thanh mát, hơi gỗ gợi cảm giác như đang đi giữa khu rừng nguyên sinh. Giải tỏa cảm xúc tiêu cực, giảm lo âu, giúp kết nối với nội tâm và thanh lọc không khí.",
+      en: "An earthy, cool, woody aroma that evokes walking through untouched forest. Releases negative emotions, eases anxiety, helps you connect inward, and purifies the air.",
+    },
+    benefits: [
+      { vi: "Giải tỏa cảm xúc tiêu cực, giảm lo âu", en: "Releases negative emotions and eases anxiety" },
+      { vi: "Giúp kết nối với nội tâm", en: "Helps you connect with your inner self" },
+      { vi: "Thanh lọc không khí trong lành", en: "Purifies and freshens the air" },
+    ],
+    howToUse: {
+      vi: "Nhỏ 5–8 giọt vào máy khuếch tán khi thiền định, yoga hoặc trước khi ngủ.",
+      en: "Add 5–8 drops to a diffuser during meditation, yoga, or before bed.",
+    },
+    ingredients: { vi: "100% tinh dầu Trắc Bách Diệp nguyên chất, Organic", en: "100% pure Cypress oil, Organic" },
+    origin: { vi: "Nguồn nguyên liệu thiên nhiên Việt Nam", en: "Natural botanicals sourced in Vietnam" },
+    extraction: { vi: "Chưng cất hơi nước", en: "Steam distillation" },
+    caution: { vi: "Không dùng cho phụ nữ mang thai 3 tháng đầu.", en: "Avoid during the first trimester of pregnancy." },
+  },
+  {
+    slug: "tinh-dau-dinh-huong",
+    name: { vi: "Tinh Dầu Đinh Hương", en: "Clove Essential Oil — Clove Tropica" },
+    category: "car",
+    priceFrom: 65000,
+    volume: "5ml / 8ml (treo xe) · 20ml (chai)",
+    bottleColor: "#2F6F65",
+    bottleVariant: "car",
+    image: "/products/tinh-dau-dinh-huong.jpg",
+    accentColor: "#D6E8E4",
+    shortDescription: {
+      vi: "Hương thơm trầm ấm, hơi cay nồng mang đến cảm giác an yên.",
+      en: "A deep, warm, lightly spicy aroma that brings a sense of calm.",
+    },
+    description: {
+      vi: "Hương thơm trầm ấm, hơi cay nồng của đinh hương mang đến cảm giác an yên, gần gũi. Có sẵn ở dạng treo xe tiện lợi và chai khuếch tán tại nhà.",
+      en: "A deep, warm, lightly spicy clove aroma that brings a sense of calm and familiarity. Available as a convenient car hanging diffuser and as a home diffuser bottle.",
+    },
+    benefits: [
+      { vi: "Mang lại cảm giác an yên, gần gũi", en: "Brings a calm, comforting feeling" },
+      { vi: "Thanh lọc không khí trong xe và nhà ở", en: "Purifies air in cars and homes" },
+      { vi: "Lưu hương bền lâu", en: "Long-lasting fragrance" },
+    ],
+    howToUse: {
+      vi: "Treo trực tiếp trong xe hơi, hoặc nhỏ 5–8 giọt vào máy khuếch tán.",
+      en: "Hang directly in your car, or add 5–8 drops to a diffuser.",
+    },
+    ingredients: { vi: "100% tinh dầu Đinh Hương nguyên chất, Organic", en: "100% pure Clove oil, Organic" },
+    origin: { vi: "Nguồn nguyên liệu thiên nhiên Việt Nam", en: "Natural botanicals sourced in Vietnam" },
+    extraction: { vi: "Chưng cất hơi nước", en: "Steam distillation" },
+    caution: { vi: "Nồng độ cao, không thoa trực tiếp lên da khi chưa pha loãng.", en: "High potency — do not apply undiluted to skin." },
+  },
+  {
+    slug: "tinh-dau-hoa-hong",
+    name: { vi: "Tinh Dầu Hoa Hồng", en: "Rose Essential Oil — Neroli Breeze" },
+    category: "car",
+    badge: "featured",
+    priceFrom: 65000,
+    volume: "5ml / 8ml (treo xe) · 20ml (chai)",
+    bottleColor: "#B06B7A",
+    bottleVariant: "car",
+    image: "/products/tinh-dau-hoa-hong.jpg",
+    accentColor: "#F3DEE3",
+    shortDescription: {
+      vi: "Mùi hương quyến rũ, sang trọng — điểm nhấn ấn tượng cho không gian.",
+      en: "A seductive, elegant aroma — a striking accent for any space.",
+    },
+    description: {
+      vi: "Mùi hương quyến rũ, sang trọng từ hoa hồng tạo điểm nhấn ấn tượng cho xe hơi hay không gian sống của bạn. Nhẹ nhàng lan tỏa, mang lại cảm giác nữ tính, tinh tế.",
+      en: "A seductive, elegant rose aroma that adds a striking accent to your car or living space. Gently diffuses, bringing a feminine, refined feeling.",
+    },
+    benefits: [
+      { vi: "Hương thơm sang trọng, quyến rũ", en: "Elegant, seductive fragrance" },
+      { vi: "Tạo điểm nhấn ấn tượng cho không gian", en: "Adds a striking accent to any space" },
+      { vi: "Thư giãn nhẹ nhàng, cân bằng cảm xúc", en: "Gentle relaxation and emotional balance" },
+    ],
+    howToUse: {
+      vi: "Treo trực tiếp trong xe hơi, hoặc nhỏ 5–8 giọt vào máy khuếch tán.",
+      en: "Hang directly in your car, or add 5–8 drops to a diffuser.",
+    },
+    ingredients: { vi: "100% tinh dầu Hoa Hồng nguyên chất, Organic", en: "100% pure Rose oil, Organic" },
+    origin: { vi: "Nguồn nguyên liệu thiên nhiên Việt Nam", en: "Natural botanicals sourced in Vietnam" },
+    extraction: { vi: "Chưng cất hơi nước", en: "Steam distillation" },
+    caution: { vi: "Kiểm tra phản ứng da trước khi sử dụng rộng rãi.", en: "Patch test before broader use." },
+  },
+  {
+    slug: "tinh-dau-cam",
+    name: { vi: "Tinh Dầu Cam", en: "Orange Essential Oil — Citrus Bloom" },
+    category: "car",
+    priceFrom: 65000,
+    volume: "5ml / 8ml (treo xe) · 20ml (chai)",
+    bottleColor: "#D98B2E",
+    bottleVariant: "car",
+    image: "/products/tinh-dau-cam.jpg",
+    accentColor: "#FBE7CE",
+    shortDescription: {
+      vi: "Hương cam ngọt dịu lan tỏa, gợi cảm giác sum vầy và hạnh phúc.",
+      en: "A soft, sweet orange scent evoking togetherness and joy.",
+    },
+    description: {
+      vi: "Hương cam ngọt dịu lan tỏa nhẹ nhàng, gợi cảm giác sum vầy và hạnh phúc. Thích hợp cho xe hơi và mọi không gian trong nhà, mang lại năng lượng tích cực mỗi ngày.",
+      en: "A soft, sweet orange scent that gently diffuses, evoking togetherness and happiness. Suited for cars and any room in the home, bringing positive energy every day.",
+    },
+    benefits: [
+      { vi: "Mang lại cảm giác vui tươi, tích cực", en: "Brings a cheerful, positive feeling" },
+      { vi: "Thơm dịu nhẹ, không gây nồng", en: "Softly fragrant, never overpowering" },
+      { vi: "Phù hợp cho cả xe hơi và không gian sống", en: "Suited for both cars and living spaces" },
+    ],
+    howToUse: {
+      vi: "Treo trực tiếp trong xe hơi, hoặc nhỏ 5–8 giọt vào máy khuếch tán.",
+      en: "Hang directly in your car, or add 5–8 drops to a diffuser.",
+    },
+    ingredients: { vi: "100% tinh dầu Cam nguyên chất, Organic", en: "100% pure Orange oil, Organic" },
+    origin: { vi: "Nguồn nguyên liệu thiên nhiên Việt Nam", en: "Natural botanicals sourced in Vietnam" },
+    extraction: { vi: "Ép lạnh từ vỏ cam", en: "Cold-pressed from orange peel" },
+    caution: { vi: "Tránh tiếp xúc trực tiếp ánh nắng sau khi thoa da.", en: "Avoid direct sun exposure after topical application." },
+  },
+  {
+    slug: "tinh-dau-buoi",
+    name: { vi: "Tinh Dầu Bưởi", en: "Pomelo Essential Oil — Pomelo Élite" },
+    category: "car",
+    priceFrom: 65000,
+    volume: "5ml / 8ml (treo xe) · 20ml (chai)",
+    bottleColor: "#8FAE5C",
+    bottleVariant: "car",
+    image: "/products/tinh-dau-buoi.jpg",
+    accentColor: "#E7F0D9",
+    shortDescription: {
+      vi: "Mùi hương nhẹ nhàng, tươi mới từ vỏ bưởi, mang lại cảm giác dễ chịu.",
+      en: "A light, fresh pomelo-peel scent that brings a pleasant feeling.",
+    },
+    description: {
+      vi: "Mùi hương nhẹ nhàng, tươi mới từ vỏ bưởi mang lại cảm giác dễ chịu, thư thái. Là lựa chọn thanh nhã cho những ai yêu thích hương cam quýt dịu nhẹ, không gắt.",
+      en: "A light, fresh scent from pomelo peel that brings a pleasant, relaxed feeling. An elegant choice for those who love a soft, gentle citrus note.",
+    },
+    benefits: [
+      { vi: "Hương tươi mới, dễ chịu", en: "Fresh, pleasant fragrance" },
+      { vi: "Thanh lọc không khí trong xe và nhà ở", en: "Purifies air in cars and homes" },
+      { vi: "Hương cam quýt dịu nhẹ, không gắt", en: "Soft, gentle citrus note" },
+    ],
+    howToUse: {
+      vi: "Treo trực tiếp trong xe hơi, hoặc nhỏ 5–8 giọt vào máy khuếch tán.",
+      en: "Hang directly in your car, or add 5–8 drops to a diffuser.",
+    },
+    ingredients: { vi: "100% tinh dầu Bưởi nguyên chất, Organic", en: "100% pure Pomelo oil, Organic" },
+    origin: { vi: "Nguồn nguyên liệu thiên nhiên Việt Nam", en: "Natural botanicals sourced in Vietnam" },
+    extraction: { vi: "Ép lạnh từ vỏ bưởi", en: "Cold-pressed from pomelo peel" },
+    caution: { vi: "Tránh tiếp xúc trực tiếp ánh nắng sau khi thoa da.", en: "Avoid direct sun exposure after topical application." },
   },
 ];
 

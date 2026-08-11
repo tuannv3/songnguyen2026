@@ -1,10 +1,34 @@
 type ProductBottleProps = {
   color: string;
   className?: string;
-  variant?: "dropper" | "diffuser";
+  variant?: "dropper" | "diffuser" | "car";
 };
 
 export function ProductBottle({ color, className, variant = "dropper" }: ProductBottleProps) {
+  if (variant === "car") {
+    return (
+      <svg viewBox="0 0 200 240" className={className} xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="100" cy="222" rx="40" ry="7" fill="black" opacity="0.06" />
+        <path
+          d="M84 18c0 14 6 24 6 24M116 18c0 14-6 24-6 24"
+          stroke="currentColor"
+          className="text-ink"
+          strokeWidth="4"
+          strokeLinecap="round"
+          fill="none"
+          opacity="0.7"
+        />
+        <circle cx="100" cy="16" r="7" fill="currentColor" className="text-ink" opacity="0.75" />
+        <rect x="76" y="40" width="48" height="26" rx="6" fill="currentColor" className="text-ink" opacity="0.88" />
+        <path d="M60 66h80l-40 118L60 66z" fill={color} opacity="0.92" />
+        <path d="M60 66h80l-10 30H70L60 66z" fill={color} />
+        <circle cx="100" cy="142" r="26" fill="white" opacity="0.92" />
+        <rect x="88" y="136" width="24" height="3" rx="1.5" fill={color} opacity="0.55" />
+        <rect x="90" y="144" width="20" height="3" rx="1.5" fill={color} opacity="0.4" />
+      </svg>
+    );
+  }
+
   if (variant === "diffuser") {
     return (
       <svg viewBox="0 0 200 240" className={className} xmlns="http://www.w3.org/2000/svg">

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Check, ChevronRight } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/language-provider";
 import { pick } from "@/lib/i18n/types";
@@ -15,7 +16,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 export function ProductDetailContent({ product }: { product: Product }) {
   const { dict, locale } = useLanguage();
   const related = getRelatedProducts(product);
-  const isAccessory = product.category === "accessory";
+  const bottleVariant = product.bottleVariant ?? (product.category === "accessory" ? "diffuser" : "dropper");
 
   const specs: { label: string; value: string }[] = [
     { label: dict.products.volumeLabel, value: product.volume },
@@ -45,14 +46,25 @@ export function ProductDetailContent({ product }: { product: Product }) {
       <section className="py-14 md:py-20">
         <Container className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
           <div
-            className="flex h-80 items-center justify-center rounded-3xl md:h-[28rem]"
+            className="relative flex h-80 items-center justify-center overflow-hidden rounded-3xl md:h-[28rem]"
             style={{ backgroundColor: product.accentColor }}
           >
-            <ProductBottle
-              color={product.bottleColor}
-              variant={isAccessory ? "diffuser" : "dropper"}
-              className="h-64 w-auto md:h-80"
-            />
+            {product.image ? (
+              <Image
+                src={product.image}
+                alt={pick(product.name, locale)}
+                fill
+                sizes="(min-width: 1024px) 45vw, 90vw"
+                className="object-contain p-6"
+                priority
+              />
+            ) : (
+              <ProductBottle
+                color={product.bottleColor}
+                variant={bottleVariant}
+                className="h-64 w-auto md:h-80"
+              />
+            )}
           </div>
 
           <div>

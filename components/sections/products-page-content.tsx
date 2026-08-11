@@ -8,7 +8,7 @@ import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/sections/page-hero";
 import { ProductCard } from "@/components/sections/product-card";
 
-const categories: ProductCategory[] = ["single", "blend", "gift", "accessory"];
+const categories: ProductCategory[] = ["car", "single", "blend", "gift", "accessory"];
 
 export function ProductsPageContent() {
   const { dict, locale } = useLanguage();

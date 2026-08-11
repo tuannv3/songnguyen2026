@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/language-provider";
 import { pick } from "@/lib/i18n/types";
@@ -10,7 +11,7 @@ import { Badge } from "@/components/ui/badge";
 
 export function ProductCard({ product }: { product: Product }) {
   const { locale, dict } = useLanguage();
-  const isAccessory = product.category === "accessory";
+  const bottleVariant = product.bottleVariant ?? (product.category === "accessory" ? "diffuser" : "dropper");
 
   return (
     <Link
@@ -33,11 +34,21 @@ export function ProductCard({ product }: { product: Product }) {
                 : dict.common.featured}
           </Badge>
         ) : null}
-        <ProductBottle
-          color={product.bottleColor}
-          variant={isAccessory ? "diffuser" : "dropper"}
-          className="h-44 w-auto transition-transform duration-300 group-hover:scale-105 group-hover:-rotate-2"
-        />
+        {product.image ? (
+          <Image
+            src={product.image}
+            alt={pick(product.name, locale)}
+            fill
+            sizes="(min-width: 1280px) 22vw, (min-width: 640px) 45vw, 90vw"
+            className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
+          />
+        ) : (
+          <ProductBottle
+            color={product.bottleColor}
+            variant={bottleVariant}
+            className="h-44 w-auto transition-transform duration-300 group-hover:scale-105 group-hover:-rotate-2"
+          />
+        )}
       </div>
       <div className="flex flex-1 flex-col gap-2 p-5">
         <h3 className="font-serif-display text-xl text-ink">{pick(product.name, locale)}</h3>
