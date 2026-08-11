@@ -1,0 +1,34 @@
+"use client";
+
+import { useLanguage } from "@/lib/i18n/language-provider";
+import { newsPosts } from "@/lib/data/news";
+import { Container } from "@/components/ui/container";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { Button } from "@/components/ui/button";
+import { NewsCard } from "@/components/sections/news-card";
+
+export function NewsTeaser() {
+  const { dict } = useLanguage();
+
+  return (
+    <section className="py-20 md:py-28">
+      <Container>
+        <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+          <SectionHeading
+            eyebrow={dict.home.newsEyebrow}
+            title={dict.home.newsHeading}
+          />
+          <Button href="/tin-tuc" variant="outline" className="shrink-0">
+            {dict.home.newsCta}
+          </Button>
+        </div>
+
+        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+          {newsPosts.slice(0, 3).map((post) => (
+            <NewsCard key={post.slug} post={post} />
+          ))}
+        </div>
+      </Container>
+    </section>
+  );
+}

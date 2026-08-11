@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Song Nguyên Essential Oils
 
-## Getting Started
+Website thương hiệu tinh dầu thiên nhiên cao cấp Song Nguyên — xây dựng bằng Next.js (App Router), TypeScript và Tailwind CSS v4, hỗ trợ song ngữ Việt/Anh.
 
-First, run the development server:
+## Công nghệ
+
+- **Next.js 16** (App Router, Turbopack)
+- **TypeScript**
+- **Tailwind CSS v4**
+- **lucide-react** cho icon hệ thống
+
+## Cấu trúc trang
+
+- `/` — Trang chủ
+- `/san-pham`, `/san-pham/[slug]` — Danh mục & chi tiết sản phẩm
+- `/qua-tang-doanh-nghiep` — Quà tặng doanh nghiệp
+- `/ve-chung-toi` — Về chúng tôi
+- `/tin-tuc`, `/tin-tuc/[slug]` — Tin tức
+- `/tuyen-dung` — Tuyển dụng
+- `/lien-he` — Liên hệ
+
+## Bắt đầu
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Mở [http://localhost:3000](http://localhost:3000) để xem trang web.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Ghi chú nội dung placeholder
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Toàn bộ sản phẩm, bài viết, tin tuyển dụng, thông tin liên hệ (địa chỉ/hotline/email) trong dự án là **nội dung mẫu** để minh họa bố cục và phong cách thương hiệu. Cần thay thế bằng:
 
-## Learn More
+- Ảnh sản phẩm thật (hiện đang dùng minh họa SVG placeholder tại `components/icons/product-bottle.tsx`)
+- Logo chính thức (hiện đang dùng bản phác lại tại `components/icons/logo.tsx` — thay bằng file logo gốc khi có)
+- Thông tin liên hệ thật trong `lib/i18n/dictionaries.ts` (mục `footer.addressValue`, `phoneValue`, `emailValue`)
+- Dữ liệu sản phẩm/tin tức/tuyển dụng trong `lib/data/`
 
-To learn more about Next.js, take a look at the following resources:
+## Build
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run build
+npm run start
+```
