@@ -73,7 +73,6 @@
 
   --animate-fade-up: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
   --animate-fade-in: fade-in 0.5s ease-out both;
-  --animate-marquee: marquee 36s linear infinite;
 
   @keyframes fade-up {
     from {
@@ -92,15 +91,6 @@
     }
     to {
       opacity: 1;
-    }
-  }
-
-  @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-50%);
     }
   }
 }
@@ -146,8 +136,4 @@ body {
 
 .text-balance {
   text-wrap: balance;
-}
-
-.marquee-group:hover .marquee-track {
-  animation-play-state: paused;
 }

@@ -1,5 +1,4 @@
 import { Hero } from "@/components/sections/hero";
-import { BrandHighlightsMarquee } from "@/components/sections/brand-highlights-marquee";
 import { BestSellers } from "@/components/sections/best-sellers";
 import { Philosophy } from "@/components/sections/philosophy";
 import { Science } from "@/components/sections/science";
@@ -12,7 +11,6 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <BrandHighlightsMarquee />
       <BestSellers />
       <Philosophy />
       <Science />

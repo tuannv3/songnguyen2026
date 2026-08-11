@@ -61,13 +61,15 @@ export const dictionaries = {
       emailValue: "[email liên hệ]",
       legalNote: "Nội dung liên hệ trên trang là thông tin tạm thời, sẽ được cập nhật chính thức.",
     },
+    carousel: {
+      regionLabel: "Băng giới thiệu",
+      previousSlide: "Slide trước",
+      nextSlide: "Slide tiếp theo",
+      goToSlide: "Đến slide",
+      pause: "Tạm dừng trình chiếu",
+      play: "Tiếp tục trình chiếu",
+    },
     home: {
-      heroEyebrow: "Tinh dầu thiên nhiên nguyên chất",
-      heroTitle: "Chắt lọc tinh hoa từ thiên nhiên Việt Nam",
-      heroSubtitle:
-        "Song Nguyên chưng cất tinh dầu nguyên chất từ dược liệu bản địa, gìn giữ trọn vẹn hương thơm và dưỡng chất cho từng khoảnh khắc thư thái của bạn.",
-      heroCtaPrimary: "Khám phá sản phẩm",
-      heroCtaSecondary: "Câu chuyện thương hiệu",
       statBrands: "năm kinh nghiệm chưng cất",
       statProducts: "dòng sản phẩm tinh dầu",
       statClients: "đối tác & doanh nghiệp tin dùng",
@@ -275,13 +277,15 @@ export const dictionaries = {
       emailValue: "[contact email]",
       legalNote: "Contact details shown are placeholders and will be updated with official information.",
     },
+    carousel: {
+      regionLabel: "Featured highlights",
+      previousSlide: "Previous slide",
+      nextSlide: "Next slide",
+      goToSlide: "Go to slide",
+      pause: "Pause slideshow",
+      play: "Resume slideshow",
+    },
     home: {
-      heroEyebrow: "Pure Natural Essential Oils",
-      heroTitle: "Distilled from the Heart of Vietnamese Nature",
-      heroSubtitle:
-        "Song Nguyên distills pure essential oils from native botanicals, preserving their full aroma and nourishing properties for every moment of calm.",
-      heroCtaPrimary: "Explore Products",
-      heroCtaSecondary: "Our Story",
       statBrands: "years of distilling craft",
       statProducts: "essential oil product lines",
       statClients: "trusted partners & businesses",

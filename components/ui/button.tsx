@@ -39,6 +39,7 @@ type ButtonAsLink = CommonProps & {
   target?: string;
   rel?: string;
   onClick?: () => void;
+  tabIndex?: number;
 };
 
 export function Button(props: ButtonAsButton | ButtonAsLink) {
@@ -46,9 +47,9 @@ export function Button(props: ButtonAsButton | ButtonAsLink) {
   const classes = clsx(base, variantClasses[variant], sizeClasses[size], className);
 
   if ("href" in props && props.href) {
-    const { href, target, rel, onClick } = props;
+    const { href, target, rel, onClick, tabIndex } = props;
     return (
-      <Link href={href} target={target} rel={rel} onClick={onClick} className={classes}>
+      <Link href={href} target={target} rel={rel} onClick={onClick} tabIndex={tabIndex} className={classes}>
         {children}
       </Link>
     );
