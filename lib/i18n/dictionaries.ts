@@ -42,8 +42,6 @@ export const dictionaries = {
       close: "Đóng",
     },
     footer: {
-      about:
-        "Song Nguyên Essential Oils chuyên sản xuất và cung cấp tinh dầu thiên nhiên nguyên chất, chưng cất từ dược liệu Việt Nam, đồng hành cùng sức khỏe và sự thư thái của bạn.",
       quickLinks: "Liên kết nhanh",
       contactHeading: "Thông tin liên hệ",
       followUs: "Kết nối với chúng tôi",
@@ -56,10 +54,6 @@ export const dictionaries = {
       hotlineLabel: "Hotline",
       emailLabel: "Email",
       workingHours: "Giờ làm việc",
-      workingHoursValue: "Thứ 2 – Thứ 7, 8:00 – 17:30",
-      addressValue: "[Địa chỉ nhà máy/văn phòng — cập nhật sau], TP. Hồ Chí Minh, Việt Nam",
-      phoneValue: "[Số hotline]",
-      emailValue: "[email liên hệ]",
       legalNote: "Nội dung liên hệ trên trang là thông tin tạm thời, sẽ được cập nhật chính thức.",
     },
     carousel: {
@@ -141,72 +135,6 @@ export const dictionaries = {
       cautionLabel: "Lưu ý",
       inquiryNote: "Vui lòng liên hệ để được báo giá sỉ/lẻ và tư vấn chi tiết.",
     },
-    corporateGifts: {
-      eyebrow: "Giải pháp quà tặng",
-      heading: "Quà tặng doanh nghiệp từ tinh dầu thiên nhiên",
-      subheading:
-        "Song Nguyên đồng hành cùng doanh nghiệp trong các dịp lễ, sự kiện tri ân khách hàng và chăm sóc nhân viên với các bộ quà tặng tinh dầu được thiết kế riêng.",
-      whyHeading: "Vì sao chọn quà tặng Song Nguyên",
-      giftSetsHeading: "Bộ quà tặng gợi ý",
-      processHeading: "Quy trình đặt hàng",
-      ctaHeading: "Nhận báo giá cho doanh nghiệp của bạn",
-      ctaBody: "Để lại thông tin, đội ngũ Song Nguyên sẽ liên hệ tư vấn bộ quà tặng phù hợp trong 24h làm việc.",
-      whyItems: [
-        {
-          title: "Thiết kế theo thương hiệu",
-          body: "In logo, thông điệp riêng trên bao bì — thể hiện dấu ấn doanh nghiệp bạn.",
-        },
-        {
-          title: "Nguyên liệu nguyên chất",
-          body: "100% tinh dầu thiên nhiên, có giấy kiểm định chất lượng đi kèm.",
-        },
-        {
-          title: "Linh hoạt số lượng",
-          body: "Nhận đơn hàng từ vài chục đến hàng nghìn bộ quà tặng, giao đúng tiến độ sự kiện.",
-        },
-        {
-          title: "Tư vấn tận tâm",
-          body: "Đội ngũ hỗ trợ chọn hương thơm và bao bì phù hợp với đối tượng nhận quà.",
-        },
-      ],
-      process: [
-        { title: "Tư vấn nhu cầu", body: "Trao đổi ngân sách, số lượng và thông điệp mong muốn." },
-        { title: "Thiết kế & báo giá", body: "Gửi mẫu thiết kế bao bì và báo giá chi tiết." },
-        { title: "Sản xuất", body: "Sản xuất và đóng gói theo tiêu chuẩn kiểm định nghiêm ngặt." },
-        { title: "Giao hàng", body: "Giao hàng tận nơi, đúng thời hạn sự kiện của doanh nghiệp." },
-      ],
-    },
-    about: {
-      eyebrow: "Câu chuyện Song Nguyên",
-      heading: "Về chúng tôi",
-      subheading:
-        "Từ tình yêu với dược liệu Việt Nam, Song Nguyên ra đời với sứ mệnh mang tinh dầu nguyên chất, an toàn đến với mọi gia đình và doanh nghiệp.",
-      storyHeading: "Hành trình của chúng tôi",
-      storyBody: [
-        "Song Nguyên khởi nguồn từ mong muốn gìn giữ và phát huy giá trị của dược liệu bản địa Việt Nam thông qua công nghệ chưng cất tinh dầu hiện đại.",
-        "Chúng tôi xây dựng vùng nguyên liệu hữu cơ đạt chuẩn, hợp tác cùng nông hộ địa phương và đầu tư dây chuyền chưng cất, kiểm định đạt tiêu chuẩn để mỗi sản phẩm đến tay khách hàng đều nguyên chất và an toàn.",
-        "Ngày nay, Song Nguyên tự hào là đối tác tin cậy của nhiều spa, phòng khám y học cổ truyền, doanh nghiệp và người tiêu dùng trên khắp cả nước.",
-      ],
-      missionHeading: "Sứ mệnh",
-      missionBody:
-        "Mang tinh hoa dược liệu Việt Nam đến gần hơn với cuộc sống hiện đại, nâng niu sức khỏe thể chất và tinh thần của cộng đồng bằng những sản phẩm tinh dầu nguyên chất, an toàn và bền vững.",
-      valuesHeading: "Giá trị cốt lõi",
-      values: [
-        { title: "Nguyên chất", body: "Cam kết 100% tinh dầu thiên nhiên, không pha tạp." },
-        { title: "Minh bạch", body: "Công khai nguồn gốc nguyên liệu và kết quả kiểm định." },
-        { title: "Bền vững", body: "Canh tác hữu cơ, đồng hành lâu dài cùng nông hộ địa phương." },
-        { title: "Tận tâm", body: "Lắng nghe và đồng hành cùng khách hàng trong từng trải nghiệm." },
-      ],
-      timelineHeading: "Các dấu mốc",
-      timeline: [
-        { year: "Năm 1", title: "Thành lập", body: "Xây dựng vùng nguyên liệu và xưởng chưng cất đầu tiên." },
-        { year: "Năm 3", title: "Mở rộng sản phẩm", body: "Ra mắt dòng tinh dầu phối hương và quà tặng doanh nghiệp." },
-        { year: "Năm 5", title: "Hợp tác chiến lược", body: "Đồng hành cùng chuỗi spa và phòng khám trên toàn quốc." },
-        { year: "Hiện tại", title: "Vươn ra thị trường mới", body: "Phát triển kênh phân phối quốc tế và thương mại điện tử." },
-      ],
-      certHeading: "Chứng nhận & tiêu chuẩn",
-      certBody: "Sản phẩm được kiểm định thành phần GC-MS và tuân thủ quy trình sản xuất đạt tiêu chuẩn an toàn thực phẩm/mỹ phẩm hiện hành.",
-    },
     news: {
       eyebrow: "Blog Song Nguyên",
       heading: "Tin tức & kiến thức tinh dầu",
@@ -215,18 +143,6 @@ export const dictionaries = {
       by: "bởi",
     },
     careers: {
-      eyebrow: "Gia nhập đội ngũ",
-      heading: "Tuyển dụng tại Song Nguyên",
-      subheading: "Cùng chúng tôi lan tỏa giá trị tinh dầu thiên nhiên Việt Nam đến cộng đồng và thế giới.",
-      whyJoinHeading: "Vì sao chọn Song Nguyên",
-      benefits: [
-        { title: "Môi trường phát triển", body: "Cơ hội học hỏi và phát triển cùng thương hiệu đang tăng trưởng." },
-        { title: "Chế độ đãi ngộ tốt", body: "Lương thưởng cạnh tranh, bảo hiểm đầy đủ theo quy định." },
-        { title: "Văn hóa gắn kết", body: "Môi trường làm việc cởi mở, coi trọng con người và sự tử tế." },
-        { title: "Sản phẩm ý nghĩa", body: "Được góp phần lan tỏa lối sống lành mạnh, gần gũi thiên nhiên." },
-      ],
-      openPositionsHeading: "Vị trí đang tuyển",
-      noOpenings: "Hiện chưa có vị trí phù hợp — hãy gửi CV để chúng tôi lưu vào hồ sơ ứng viên tiềm năng.",
       location: "Địa điểm",
       type: "Hình thức",
       applyCta: "Gửi hồ sơ ứng tuyển",
@@ -284,8 +200,6 @@ export const dictionaries = {
       close: "Close",
     },
     footer: {
-      about:
-        "Song Nguyên Essential Oils produces and supplies pure natural essential oils, distilled from Vietnamese botanicals, for your health and everyday wellbeing.",
       quickLinks: "Quick Links",
       contactHeading: "Contact Information",
       followUs: "Follow Us",
@@ -298,10 +212,6 @@ export const dictionaries = {
       hotlineLabel: "Hotline",
       emailLabel: "Email",
       workingHours: "Working Hours",
-      workingHoursValue: "Mon – Sat, 8:00 AM – 5:30 PM",
-      addressValue: "[Factory/office address — to be updated], Ho Chi Minh City, Vietnam",
-      phoneValue: "[Hotline number]",
-      emailValue: "[contact email]",
       legalNote: "Contact details shown are placeholders and will be updated with official information.",
     },
     carousel: {
@@ -383,60 +293,6 @@ export const dictionaries = {
       cautionLabel: "Caution",
       inquiryNote: "Contact us for wholesale/retail pricing and detailed consultation.",
     },
-    corporateGifts: {
-      eyebrow: "Gifting Solutions",
-      heading: "Corporate Gifts from Natural Essential Oils",
-      subheading:
-        "Song Nguyên partners with businesses for holidays, client appreciation events and employee care with custom-designed essential oil gift sets.",
-      whyHeading: "Why Choose Song Nguyên Gifts",
-      giftSetsHeading: "Suggested Gift Sets",
-      processHeading: "Ordering Process",
-      ctaHeading: "Get a Quote for Your Business",
-      ctaBody: "Leave your details and our team will consult on the right gift set within 24 business hours.",
-      whyItems: [
-        { title: "Branded Design", body: "Custom logo and messaging on packaging — carrying your company's identity." },
-        { title: "Pure Ingredients", body: "100% natural essential oils with accompanying quality test reports." },
-        { title: "Flexible Quantities", body: "From a few dozen to thousands of sets, delivered on your event timeline." },
-        { title: "Dedicated Support", body: "Our team helps select the right scent and packaging for your recipients." },
-      ],
-      process: [
-        { title: "Consultation", body: "We discuss your budget, quantity and desired message." },
-        { title: "Design & Quote", body: "Receive packaging mockups and a detailed quote." },
-        { title: "Production", body: "Manufactured and packaged under strict quality standards." },
-        { title: "Delivery", body: "Delivered on time for your company's event." },
-      ],
-    },
-    about: {
-      eyebrow: "The Song Nguyên Story",
-      heading: "About Us",
-      subheading:
-        "Born from a love of Vietnamese botanicals, Song Nguyên's mission is to bring pure, safe essential oils to every family and business.",
-      storyHeading: "Our Journey",
-      storyBody: [
-        "Song Nguyên began with a desire to preserve and elevate the value of native Vietnamese botanicals through modern distillation technology.",
-        "We built certified organic growing regions, partnered with local farming households, and invested in distillation and testing lines so every product reaching customers is pure and safe.",
-        "Today, Song Nguyên is proud to be a trusted partner to spas, traditional medicine clinics, businesses and consumers across the country.",
-      ],
-      missionHeading: "Our Mission",
-      missionBody:
-        "To bring the essence of Vietnamese botanicals closer to modern life, nurturing the physical and mental wellbeing of our community with pure, safe and sustainable essential oil products.",
-      valuesHeading: "Core Values",
-      values: [
-        { title: "Purity", body: "Committed to 100% natural essential oils, never diluted." },
-        { title: "Transparency", body: "Open about ingredient origin and lab test results." },
-        { title: "Sustainability", body: "Organic farming, long-term partnership with local growers." },
-        { title: "Dedication", body: "Listening to and supporting customers at every step." },
-      ],
-      timelineHeading: "Milestones",
-      timeline: [
-        { year: "Year 1", title: "Founded", body: "Built our first growing region and distillation workshop." },
-        { year: "Year 3", title: "Expanded Range", body: "Launched signature blends and corporate gift lines." },
-        { year: "Year 5", title: "Strategic Partnerships", body: "Partnered with spa chains and clinics nationwide." },
-        { year: "Today", title: "Reaching New Markets", body: "Growing international distribution and e-commerce channels." },
-      ],
-      certHeading: "Certifications & Standards",
-      certBody: "Products are tested with GC-MS analysis and comply with current food/cosmetic safety production standards.",
-    },
     news: {
       eyebrow: "Song Nguyên Blog",
       heading: "News & Essential Oil Knowledge",
@@ -445,18 +301,6 @@ export const dictionaries = {
       by: "by",
     },
     careers: {
-      eyebrow: "Join Our Team",
-      heading: "Careers at Song Nguyên",
-      subheading: "Join us in spreading the value of pure Vietnamese essential oils to the community and the world.",
-      whyJoinHeading: "Why Join Song Nguyên",
-      benefits: [
-        { title: "Growth Environment", body: "Learning and growth opportunities within a growing brand." },
-        { title: "Strong Benefits", body: "Competitive pay and full statutory insurance." },
-        { title: "Connected Culture", body: "An open workplace that values people and kindness." },
-        { title: "Meaningful Work", body: "Help spread a healthy lifestyle connected to nature." },
-      ],
-      openPositionsHeading: "Open Positions",
-      noOpenings: "No suitable openings right now — send us your CV to join our talent pool.",
       location: "Location",
       type: "Type",
       applyCta: "Submit Application",

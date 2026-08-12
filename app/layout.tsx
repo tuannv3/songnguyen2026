@@ -2,11 +2,6 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Be_Vietnam_Pro } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n/language-provider";
-import { CartProvider } from "@/lib/cart/cart-provider";
-import { SiteHeader } from "@/components/layout/site-header";
-import { SiteFooter } from "@/components/layout/site-footer";
-import { CartDrawer } from "@/components/cart/cart-drawer";
-import { ContactPopup } from "@/components/contact/contact-popup";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -45,15 +40,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${cormorant.variable} ${bodyFont.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
-        <LanguageProvider>
-          <CartProvider>
-            <SiteHeader />
-            <main className="flex-1">{children}</main>
-            <SiteFooter />
-            <CartDrawer />
-            <ContactPopup />
-          </CartProvider>
-        </LanguageProvider>
+        <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
   );

@@ -1,0 +1,205 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model HeroSlide {
+  id                  String   @id @default(cuid())
+  order               Int      @default(0)
+  eyebrowVi           String
+  eyebrowEn           String
+  titleVi             String
+  titleEn             String
+  subtitleVi          String
+  subtitleEn          String
+  ctaPrimaryLabelVi   String
+  ctaPrimaryLabelEn   String
+  ctaPrimaryHref      String
+  ctaSecondaryLabelVi String?
+  ctaSecondaryLabelEn String?
+  ctaSecondaryHref    String?
+  bottleColor1        String
+  bottleColor2        String
+  glowColor           String
+  image               String?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@index([order])
+}
+
+model Product {
+  id                 String   @id @default(cuid())
+  slug               String   @unique
+  nameVi             String
+  nameEn             String
+  category           String
+  badge              String?
+  priceFrom          Int
+  volume             String
+  bottleColor        String
+  bottleVariant      String?
+  image              String?
+  shopeeUrl          String?
+  accentColor        String
+  shortDescriptionVi String
+  shortDescriptionEn String
+  descriptionVi      String
+  descriptionEn      String
+  benefits           Json
+  howToUseVi         String
+  howToUseEn         String
+  ingredientsVi      String
+  ingredientsEn      String
+  originVi           String
+  originEn           String
+  extractionVi       String
+  extractionEn       String
+  cautionVi          String
+  cautionEn          String
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model NewsPost {
+  id             String   @id @default(cuid())
+  slug           String   @unique
+  titleVi        String
+  titleEn        String
+  excerptVi      String
+  excerptEn      String
+  contentVi      Json
+  contentEn      Json
+  date           String
+  authorVi       String
+  authorEn       String
+  categoryVi     String
+  categoryEn     String
+  accentColor    String
+  readingMinutes Int
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model JobPosting {
+  id           String   @id @default(cuid())
+  slug         String   @unique
+  order        Int      @default(0)
+  titleVi      String
+  titleEn      String
+  locationVi   String
+  locationEn   String
+  typeVi       String
+  typeEn       String
+  summaryVi    String
+  summaryEn    String
+  requirements Json
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([order])
+}
+
+/// Singleton row (id = "singleton") holding the About Us page content.
+model AboutContent {
+  id                String   @id @default("singleton")
+  eyebrowVi         String
+  eyebrowEn         String
+  headingVi         String
+  headingEn         String
+  subheadingVi      String
+  subheadingEn      String
+  storyHeadingVi    String
+  storyHeadingEn    String
+  storyBodyVi       Json
+  storyBodyEn       Json
+  missionHeadingVi  String
+  missionHeadingEn  String
+  missionBodyVi     String
+  missionBodyEn     String
+  valuesHeadingVi   String
+  valuesHeadingEn   String
+  values            Json
+  timelineHeadingVi String
+  timelineHeadingEn String
+  timeline          Json
+  certHeadingVi     String
+  certHeadingEn     String
+  certBodyVi        String
+  certBodyEn        String
+  updatedAt         DateTime @updatedAt
+}
+
+/// Singleton row (id = "singleton") holding the Corporate Gifts page copy.
+model CorporateGiftsContent {
+  id                String   @id @default("singleton")
+  eyebrowVi         String
+  eyebrowEn         String
+  headingVi         String
+  headingEn         String
+  subheadingVi      String
+  subheadingEn      String
+  whyHeadingVi      String
+  whyHeadingEn      String
+  giftSetsHeadingVi String
+  giftSetsHeadingEn String
+  processHeadingVi  String
+  processHeadingEn  String
+  ctaHeadingVi      String
+  ctaHeadingEn      String
+  ctaBodyVi         String
+  ctaBodyEn         String
+  whyItems          Json
+  process           Json
+  updatedAt         DateTime @updatedAt
+}
+
+/// Singleton row (id = "singleton") holding the Careers page intro/benefits copy (not the job listings themselves).
+model CareersPageContent {
+  id                     String   @id @default("singleton")
+  eyebrowVi              String
+  eyebrowEn              String
+  headingVi              String
+  headingEn              String
+  subheadingVi           String
+  subheadingEn           String
+  whyJoinHeadingVi       String
+  whyJoinHeadingEn       String
+  benefits               Json
+  openPositionsHeadingVi String
+  openPositionsHeadingEn String
+  noOpeningsVi           String
+  noOpeningsEn           String
+  updatedAt              DateTime @updatedAt
+}
+
+/// Singleton row (id = "singleton") holding footer/contact/social info used site-wide.
+model SiteSettings {
+  id             String   @id @default("singleton")
+  footerAboutVi  String
+  footerAboutEn  String
+  addressVi      String
+  addressEn      String
+  phone          String
+  email          String
+  workingHoursVi String
+  workingHoursEn String
+  zaloUrl        String
+  messengerUrl   String
+  facebookUrl    String
+  instagramUrl   String
+  youtubeUrl     String?
+  updatedAt      DateTime @updatedAt
+}

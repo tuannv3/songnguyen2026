@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ChevronRight, CalendarDays, User } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/language-provider";
-import { newsPosts, type NewsPost } from "@/lib/data/news";
+import type { NewsPost } from "@/lib/data/news";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { NewsCard } from "@/components/sections/news-card";
@@ -16,9 +16,8 @@ function formatDate(iso: string, locale: "vi" | "en") {
   });
 }
 
-export function NewsDetailContent({ post }: { post: NewsPost }) {
+export function NewsDetailContent({ post, related }: { post: NewsPost; related: NewsPost[] }) {
   const { dict, locale } = useLanguage();
-  const related = newsPosts.filter((item) => item.slug !== post.slug).slice(0, 3);
 
   return (
     <>

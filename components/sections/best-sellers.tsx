@@ -1,13 +1,13 @@
 "use client";
 
 import { useLanguage } from "@/lib/i18n/language-provider";
-import { products } from "@/lib/data/products";
+import type { Product } from "@/lib/data/products";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { ProductCard } from "@/components/sections/product-card";
 
-export function BestSellers() {
+export function BestSellers({ products }: { products: Product[] }) {
   const { dict } = useLanguage();
   const featured = products.filter((p) => p.badge === "bestseller" || p.badge === "featured").slice(0, 4);
 

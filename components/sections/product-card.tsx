@@ -41,7 +41,7 @@ export function ProductCard({ product }: { product: Product }) {
           onClick={(event) => {
             event.preventDefault();
             event.stopPropagation();
-            addItem(product.slug);
+            addItem(product);
           }}
           aria-label={dict.cart.addToCart}
           className="absolute right-4 top-4 z-10 inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-card text-ink shadow-soft transition-colors hover:bg-primary hover:text-on-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"

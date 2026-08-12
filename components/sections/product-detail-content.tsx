@@ -6,7 +6,7 @@ import { useState } from "react";
 import { Check, ChevronRight, Minus, Plus, ShoppingBag, CheckCircle2, ExternalLink } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/language-provider";
 import { pick } from "@/lib/i18n/types";
-import { categoryLabels, getRelatedProducts, type Product } from "@/lib/data/products";
+import { categoryLabels, type Product } from "@/lib/data/products";
 import { useCart } from "@/lib/cart/cart-provider";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
@@ -15,10 +15,9 @@ import { ProductBottle } from "@/components/icons/product-bottle";
 import { ProductCard } from "@/components/sections/product-card";
 import { SectionHeading } from "@/components/ui/section-heading";
 
-export function ProductDetailContent({ product }: { product: Product }) {
+export function ProductDetailContent({ product, related }: { product: Product; related: Product[] }) {
   const { dict, locale } = useLanguage();
   const { addItem } = useCart();
-  const related = getRelatedProducts(product);
   const bottleVariant = product.bottleVariant ?? (product.category === "accessory" ? "diffuser" : "dropper");
   const [quantity, setQuantity] = useState(1);
   const [justAdded, setJustAdded] = useState(false);
@@ -134,7 +133,7 @@ export function ProductDetailContent({ product }: { product: Product }) {
               <Button
                 size="lg"
                 onClick={() => {
-                  addItem(product.slug, quantity);
+                  addItem(product, quantity);
                   setJustAdded(true);
                   window.setTimeout(() => setJustAdded(false), 2000);
                 }}

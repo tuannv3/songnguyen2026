@@ -5,7 +5,7 @@ import Image from "next/image";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { clsx } from "clsx";
 import { useLanguage } from "@/lib/i18n/language-provider";
-import { heroSlides } from "@/lib/data/hero-slides";
+import type { HeroSlide } from "@/lib/data/hero-slides";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { ProductBottle } from "@/components/icons/product-bottle";
@@ -62,7 +62,7 @@ function RevealUp({
   );
 }
 
-export function Hero() {
+export function Hero({ slides: heroSlides }: { slides: HeroSlide[] }) {
   const { dict, locale } = useLanguage();
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);

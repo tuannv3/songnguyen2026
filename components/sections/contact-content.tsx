@@ -2,26 +2,30 @@
 
 import { MapPin, Phone, Mail, Clock, MapPinned } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/language-provider";
+import { pick } from "@/lib/i18n/types";
+import type { getSiteSettings } from "@/lib/cms/settings";
 import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/sections/page-hero";
 import { InquiryForm } from "@/components/sections/inquiry-form";
 import { FacebookIcon, InstagramIcon, YoutubeIcon, ZaloIcon } from "@/components/icons/social";
 
-const socials = [
-  { icon: FacebookIcon, label: "Facebook", href: "https://facebook.com" },
-  { icon: InstagramIcon, label: "Instagram", href: "https://instagram.com" },
-  { icon: YoutubeIcon, label: "YouTube", href: "https://youtube.com" },
-  { icon: ZaloIcon, label: "Zalo", href: "https://zalo.me" },
-];
+export function ContactContent({ settings }: { settings: Awaited<ReturnType<typeof getSiteSettings>> }) {
+  const { dict, locale } = useLanguage();
 
-export function ContactContent() {
-  const { dict } = useLanguage();
+  const socials = [
+    { icon: FacebookIcon, label: "Facebook", href: settings.facebookUrl },
+    { icon: InstagramIcon, label: "Instagram", href: settings.instagramUrl },
+    ...(settings.youtubeUrl ? [{ icon: YoutubeIcon, label: "YouTube", href: settings.youtubeUrl }] : []),
+    { icon: ZaloIcon, label: "Zalo", href: settings.zaloUrl },
+  ];
 
   const info = [
-    { icon: MapPin, label: dict.footer.addressLabel, value: dict.footer.addressValue },
-    { icon: Phone, label: dict.footer.hotlineLabel, value: dict.footer.phoneValue },
-    { icon: Mail, label: dict.footer.emailLabel, value: dict.footer.emailValue },
-    { icon: Clock, label: dict.footer.workingHours, value: dict.footer.workingHoursValue },
+    ...(pick(settings.address, locale)
+      ? [{ icon: MapPin, label: dict.footer.addressLabel, value: pick(settings.address, locale) }]
+      : []),
+    ...(settings.phone ? [{ icon: Phone, label: dict.footer.hotlineLabel, value: settings.phone }] : []),
+    ...(settings.email ? [{ icon: Mail, label: dict.footer.emailLabel, value: settings.email }] : []),
+    { icon: Clock, label: dict.footer.workingHours, value: pick(settings.workingHours, locale) },
   ];
 
   return (

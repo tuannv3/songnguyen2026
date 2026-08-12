@@ -6,7 +6,6 @@ import { X, Minus, Plus, Trash2, ShoppingBag } from "lucide-react";
 import { useCart } from "@/lib/cart/cart-provider";
 import { useLanguage } from "@/lib/i18n/language-provider";
 import { pick } from "@/lib/i18n/types";
-import { getProductBySlug } from "@/lib/data/products";
 import { ProductBottle } from "@/components/icons/product-bottle";
 
 export function CartDrawer() {
@@ -26,12 +25,6 @@ export function CartDrawer() {
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [isOpen, close]);
-
-  const resolvedLines = lines
-    .map((line) => ({ line, product: getProductBySlug(line.slug) }))
-    .filter((entry): entry is { line: (typeof lines)[number]; product: NonNullable<ReturnType<typeof getProductBySlug>> } =>
-      Boolean(entry.product)
-    );
 
   return (
     <>
@@ -63,7 +56,7 @@ export function CartDrawer() {
           </button>
         </div>
 
-        {resolvedLines.length === 0 ? (
+        {lines.length === 0 ? (
           <div className="flex flex-1 flex-col items-center justify-center gap-4 px-6 text-center">
             <span className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-muted text-muted-foreground">
               <ShoppingBag className="h-7 w-7" aria-hidden="true" />
@@ -83,8 +76,8 @@ export function CartDrawer() {
         ) : (
           <>
             <ul className="flex-1 overflow-y-auto px-6 py-4">
-              {resolvedLines.map(({ line, product }) => (
-                <li key={line.slug} className="flex gap-4 border-b border-border py-4 last:border-b-0">
+              {lines.map(({ product, quantity }) => (
+                <li key={product.slug} className="flex gap-4 border-b border-border py-4 last:border-b-0">
                   <div
                     className="flex h-20 w-20 shrink-0 items-center justify-center rounded-xl"
                     style={{ backgroundColor: product.accentColor }}
@@ -110,18 +103,18 @@ export function CartDrawer() {
                       <div className="flex items-center gap-1 rounded-full border border-border">
                         <button
                           type="button"
-                          onClick={() => setQuantity(line.slug, line.quantity - 1)}
+                          onClick={() => setQuantity(product.slug, quantity - 1)}
                           aria-label={dict.cart.decreaseQuantity}
                           className="inline-flex h-7 w-7 cursor-pointer items-center justify-center rounded-full text-ink/70 transition-colors hover:bg-muted"
                         >
                           <Minus className="h-3.5 w-3.5" aria-hidden="true" />
                         </button>
                         <span className="w-6 text-center text-sm text-ink" aria-label={dict.cart.quantity}>
-                          {line.quantity}
+                          {quantity}
                         </span>
                         <button
                           type="button"
-                          onClick={() => setQuantity(line.slug, line.quantity + 1)}
+                          onClick={() => setQuantity(product.slug, quantity + 1)}
                           aria-label={dict.cart.increaseQuantity}
                           className="inline-flex h-7 w-7 cursor-pointer items-center justify-center rounded-full text-ink/70 transition-colors hover:bg-muted"
                         >
@@ -130,7 +123,7 @@ export function CartDrawer() {
                       </div>
                       <button
                         type="button"
-                        onClick={() => removeItem(line.slug)}
+                        onClick={() => removeItem(product.slug)}
                         aria-label={dict.cart.remove}
                         className="inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive"
                       >

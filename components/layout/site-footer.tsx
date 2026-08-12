@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/language-provider";
+import { pick } from "@/lib/i18n/types";
+import type { getSiteSettings } from "@/lib/cms/settings";
 import { Logo } from "@/components/icons/logo";
 import { Container } from "@/components/ui/container";
 import { FacebookIcon, InstagramIcon, YoutubeIcon, ZaloIcon } from "@/components/icons/social";
@@ -18,17 +20,17 @@ const navItems = [
   { href: "/lien-he", key: "contact" as const },
 ];
 
-const socials = [
-  { icon: FacebookIcon, label: "Facebook", href: "https://facebook.com" },
-  { icon: InstagramIcon, label: "Instagram", href: "https://instagram.com" },
-  { icon: YoutubeIcon, label: "YouTube", href: "https://youtube.com" },
-  { icon: ZaloIcon, label: "Zalo", href: "https://zalo.me" },
-];
-
-export function SiteFooter() {
-  const { dict } = useLanguage();
+export function SiteFooter({ settings }: { settings: Awaited<ReturnType<typeof getSiteSettings>> }) {
+  const { dict, locale } = useLanguage();
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+
+  const socials = [
+    { icon: FacebookIcon, label: "Facebook", href: settings.facebookUrl },
+    { icon: InstagramIcon, label: "Instagram", href: settings.instagramUrl },
+    ...(settings.youtubeUrl ? [{ icon: YoutubeIcon, label: "YouTube", href: settings.youtubeUrl }] : []),
+    { icon: ZaloIcon, label: "Zalo", href: settings.zaloUrl },
+  ];
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -46,7 +48,7 @@ export function SiteFooter() {
               <Logo />
             </Link>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/60">
-              {dict.footer.about}
+              {pick(settings.footerAbout, locale)}
             </p>
             <div className="mt-6 flex items-center gap-3">
               {socials.map(({ icon: Icon, label, href }) => (
@@ -80,21 +82,27 @@ export function SiteFooter() {
           <div>
             <h3 className="font-serif-display text-lg text-white">{dict.footer.contactHeading}</h3>
             <ul className="mt-5 space-y-3 text-sm text-white/60">
-              <li className="flex gap-2.5">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent-light" aria-hidden="true" />
-                <span>{dict.footer.addressValue}</span>
-              </li>
-              <li className="flex gap-2.5">
-                <Phone className="mt-0.5 h-4 w-4 shrink-0 text-accent-light" aria-hidden="true" />
-                <span>{dict.footer.phoneValue}</span>
-              </li>
-              <li className="flex gap-2.5">
-                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-accent-light" aria-hidden="true" />
-                <span>{dict.footer.emailValue}</span>
-              </li>
+              {pick(settings.address, locale) ? (
+                <li className="flex gap-2.5">
+                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent-light" aria-hidden="true" />
+                  <span>{pick(settings.address, locale)}</span>
+                </li>
+              ) : null}
+              {settings.phone ? (
+                <li className="flex gap-2.5">
+                  <Phone className="mt-0.5 h-4 w-4 shrink-0 text-accent-light" aria-hidden="true" />
+                  <span>{settings.phone}</span>
+                </li>
+              ) : null}
+              {settings.email ? (
+                <li className="flex gap-2.5">
+                  <Mail className="mt-0.5 h-4 w-4 shrink-0 text-accent-light" aria-hidden="true" />
+                  <span>{settings.email}</span>
+                </li>
+              ) : null}
               <li className="flex gap-2.5">
                 <Clock className="mt-0.5 h-4 w-4 shrink-0 text-accent-light" aria-hidden="true" />
-                <span>{dict.footer.workingHoursValue}</span>
+                <span>{pick(settings.workingHours, locale)}</span>
               </li>
             </ul>
           </div>

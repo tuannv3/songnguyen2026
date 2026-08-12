@@ -2,6 +2,8 @@
 
 import { Sparkles, ShieldCheck, Sprout, HeartHandshake, Award } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/language-provider";
+import { pick } from "@/lib/i18n/types";
+import type { getAboutContent } from "@/lib/cms/about";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { PageHero } from "@/components/sections/page-hero";
@@ -9,15 +11,15 @@ import { BotanicalPattern } from "@/components/icons/botanical";
 
 const valueIcons = [Sparkles, ShieldCheck, Sprout, HeartHandshake];
 
-export function AboutContent() {
-  const { dict } = useLanguage();
+export function AboutContent({ content }: { content: Awaited<ReturnType<typeof getAboutContent>> }) {
+  const { locale } = useLanguage();
 
   return (
     <>
       <PageHero
-        eyebrow={dict.about.eyebrow}
-        title={dict.about.heading}
-        description={dict.about.subheading}
+        eyebrow={pick(content.eyebrow, locale)}
+        title={pick(content.heading, locale)}
+        description={pick(content.subheading, locale)}
       />
 
       <section className="py-16 md:py-24">
@@ -26,11 +28,11 @@ export function AboutContent() {
             <BotanicalPattern className="h-3/4 w-3/4 text-primary" />
           </div>
           <div className="order-1 lg:order-2">
-            <SectionHeading title={dict.about.storyHeading} />
+            <SectionHeading title={pick(content.storyHeading, locale)} />
             <div className="mt-5 space-y-4">
-              {dict.about.storyBody.map((paragraph) => (
-                <p key={paragraph} className="text-sm leading-relaxed text-ink/75">
-                  {paragraph}
+              {content.storyBody.map((paragraph) => (
+                <p key={pick(paragraph, locale)} className="text-sm leading-relaxed text-ink/75">
+                  {pick(paragraph, locale)}
                 </p>
               ))}
             </div>
@@ -51,8 +53,8 @@ export function AboutContent() {
           <SectionHeading
             align="center"
             eyebrow=""
-            title={dict.about.missionHeading}
-            description={dict.about.missionBody}
+            title={pick(content.missionHeading, locale)}
+            description={pick(content.missionBody, locale)}
             tone="dark"
             className="mx-auto"
           />
@@ -61,20 +63,20 @@ export function AboutContent() {
 
       <section className="py-16 md:py-24">
         <Container>
-          <SectionHeading align="center" title={dict.about.valuesHeading} className="mx-auto" />
+          <SectionHeading align="center" title={pick(content.valuesHeading, locale)} className="mx-auto" />
           <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {dict.about.values.map((value, index) => {
+            {content.values.map((value, index) => {
               const Icon = valueIcons[index % valueIcons.length];
               return (
                 <div
-                  key={value.title}
+                  key={pick(value.title, locale)}
                   className="rounded-2xl border border-border bg-card p-6 text-center shadow-soft"
                 >
                   <span className="mx-auto inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
                     <Icon className="h-5 w-5" aria-hidden="true" />
                   </span>
-                  <h3 className="font-serif-display mt-4 text-lg text-ink">{value.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{value.body}</p>
+                  <h3 className="font-serif-display mt-4 text-lg text-ink">{pick(value.title, locale)}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{pick(value.body, locale)}</p>
                 </div>
               );
             })}
@@ -84,14 +86,14 @@ export function AboutContent() {
 
       <section className="bg-muted/50 py-16 md:py-24">
         <Container>
-          <SectionHeading align="center" title={dict.about.timelineHeading} className="mx-auto" />
+          <SectionHeading align="center" title={pick(content.timelineHeading, locale)} className="mx-auto" />
           <ol className="relative mt-14 space-y-10 border-l border-border pl-8 sm:mx-auto sm:max-w-2xl">
-            {dict.about.timeline.map((item) => (
-              <li key={item.title} className="relative">
+            {content.timeline.map((item) => (
+              <li key={pick(item.title, locale)} className="relative">
                 <span className="absolute -left-[2.35rem] top-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary ring-4 ring-background" />
-                <p className="text-xs font-medium uppercase tracking-[0.25em] text-accent">{item.year}</p>
-                <h3 className="font-serif-display mt-1 text-lg text-ink">{item.title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+                <p className="text-xs font-medium uppercase tracking-[0.25em] text-accent">{pick(item.year, locale)}</p>
+                <h3 className="font-serif-display mt-1 text-lg text-ink">{pick(item.title, locale)}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{pick(item.body, locale)}</p>
               </li>
             ))}
           </ol>
@@ -103,8 +105,8 @@ export function AboutContent() {
           <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-accent/15 text-accent">
             <Award className="h-6 w-6" aria-hidden="true" />
           </span>
-          <h2 className="font-serif-display text-2xl text-ink">{dict.about.certHeading}</h2>
-          <p className="text-sm leading-relaxed text-muted-foreground">{dict.about.certBody}</p>
+          <h2 className="font-serif-display text-2xl text-ink">{pick(content.certHeading, locale)}</h2>
+          <p className="text-sm leading-relaxed text-muted-foreground">{pick(content.certBody, locale)}</p>
         </Container>
       </section>
     </>

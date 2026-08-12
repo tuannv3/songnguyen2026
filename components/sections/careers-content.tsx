@@ -4,7 +4,9 @@ import { useState } from "react";
 import { MapPin, Briefcase, ChevronDown, TrendingUp, Wallet, Users, Leaf } from "lucide-react";
 import { clsx } from "clsx";
 import { useLanguage } from "@/lib/i18n/language-provider";
-import { jobPostings } from "@/lib/data/careers";
+import { pick } from "@/lib/i18n/types";
+import type { JobPosting } from "@/lib/data/careers";
+import type { getCareersPageContent } from "@/lib/cms/careers";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { PageHero } from "@/components/sections/page-hero";
@@ -12,34 +14,40 @@ import { InquiryForm } from "@/components/sections/inquiry-form";
 
 const benefitIcons = [TrendingUp, Wallet, Users, Leaf];
 
-export function CareersContent() {
+export function CareersContent({
+  jobs,
+  content,
+}: {
+  jobs: JobPosting[];
+  content: Awaited<ReturnType<typeof getCareersPageContent>>;
+}) {
   const { dict, locale } = useLanguage();
-  const [openSlug, setOpenSlug] = useState<string | null>(jobPostings[0]?.slug ?? null);
+  const [openSlug, setOpenSlug] = useState<string | null>(jobs[0]?.slug ?? null);
 
   return (
     <>
       <PageHero
-        eyebrow={dict.careers.eyebrow}
-        title={dict.careers.heading}
-        description={dict.careers.subheading}
+        eyebrow={pick(content.eyebrow, locale)}
+        title={pick(content.heading, locale)}
+        description={pick(content.subheading, locale)}
       />
 
       <section className="py-16 md:py-20">
         <Container>
-          <SectionHeading align="center" title={dict.careers.whyJoinHeading} className="mx-auto" />
+          <SectionHeading align="center" title={pick(content.whyJoinHeading, locale)} className="mx-auto" />
           <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {dict.careers.benefits.map((benefit, index) => {
+            {content.benefits.map((benefit, index) => {
               const Icon = benefitIcons[index % benefitIcons.length];
               return (
                 <div
-                  key={benefit.title}
+                  key={pick(benefit.title, locale)}
                   className="rounded-2xl border border-border bg-card p-6 text-center shadow-soft"
                 >
                   <span className="mx-auto inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
                     <Icon className="h-5 w-5" aria-hidden="true" />
                   </span>
-                  <h3 className="font-serif-display mt-4 text-lg text-ink">{benefit.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{benefit.body}</p>
+                  <h3 className="font-serif-display mt-4 text-lg text-ink">{pick(benefit.title, locale)}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{pick(benefit.body, locale)}</p>
                 </div>
               );
             })}
@@ -49,11 +57,11 @@ export function CareersContent() {
 
       <section className="bg-muted/50 py-16 md:py-20">
         <Container className="mx-auto max-w-3xl">
-          <SectionHeading align="center" title={dict.careers.openPositionsHeading} className="mx-auto" />
+          <SectionHeading align="center" title={pick(content.openPositionsHeading, locale)} className="mx-auto" />
 
-          {jobPostings.length > 0 ? (
+          {jobs.length > 0 ? (
             <div className="mt-10 space-y-4">
-              {jobPostings.map((job) => {
+              {jobs.map((job) => {
                 const isOpen = openSlug === job.slug;
                 return (
                   <div key={job.slug} className="overflow-hidden rounded-2xl border border-border bg-card">
@@ -115,7 +123,7 @@ export function CareersContent() {
               })}
             </div>
           ) : (
-            <p className="mt-10 text-center text-muted-foreground">{dict.careers.noOpenings}</p>
+            <p className="mt-10 text-center text-muted-foreground">{pick(content.noOpenings, locale)}</p>
           )}
         </Container>
       </section>

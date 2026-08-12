@@ -3,14 +3,14 @@
 import { useState } from "react";
 import { clsx } from "clsx";
 import { useLanguage } from "@/lib/i18n/language-provider";
-import { products, categoryLabels, type ProductCategory } from "@/lib/data/products";
+import { categoryLabels, type Product, type ProductCategory } from "@/lib/data/products";
 import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/sections/page-hero";
 import { ProductCard } from "@/components/sections/product-card";
 
 const categories: ProductCategory[] = ["car", "single", "blend", "gift", "accessory"];
 
-export function ProductsPageContent() {
+export function ProductsPageContent({ products }: { products: Product[] }) {
   const { dict, locale } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<ProductCategory | "all">("all");
 

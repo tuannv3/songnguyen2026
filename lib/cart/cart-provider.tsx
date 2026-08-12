@@ -9,10 +9,10 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { getProductBySlug } from "@/lib/data/products";
+import type { Product } from "@/lib/data/products";
 
 export type CartLine = {
-  slug: string;
+  product: Product;
   quantity: number;
 };
 
@@ -21,7 +21,7 @@ type CartContextValue = {
   isOpen: boolean;
   open: () => void;
   close: () => void;
-  addItem: (slug: string, quantity?: number) => void;
+  addItem: (product: Product, quantity?: number) => void;
   removeItem: (slug: string) => void;
   setQuantity: (slug: string, quantity: number) => void;
   clear: () => void;
@@ -61,27 +61,27 @@ export function CartProvider({ children }: { children: ReactNode }) {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(lines));
   }, [lines, hydrated]);
 
-  const addItem = useCallback((slug: string, quantity = 1) => {
+  const addItem = useCallback((product: Product, quantity = 1) => {
     setLines((current) => {
-      const existing = current.find((line) => line.slug === slug);
+      const existing = current.find((line) => line.product.slug === product.slug);
       if (existing) {
         return current.map((line) =>
-          line.slug === slug ? { ...line, quantity: line.quantity + quantity } : line
+          line.product.slug === product.slug ? { ...line, quantity: line.quantity + quantity } : line
         );
       }
-      return [...current, { slug, quantity }];
+      return [...current, { product, quantity }];
     });
     setIsOpen(true);
   }, []);
 
   const removeItem = useCallback((slug: string) => {
-    setLines((current) => current.filter((line) => line.slug !== slug));
+    setLines((current) => current.filter((line) => line.product.slug !== slug));
   }, []);
 
   const setQuantity = useCallback((slug: string, quantity: number) => {
     setLines((current) => {
-      if (quantity <= 0) return current.filter((line) => line.slug !== slug);
-      return current.map((line) => (line.slug === slug ? { ...line, quantity } : line));
+      if (quantity <= 0) return current.filter((line) => line.product.slug !== slug);
+      return current.map((line) => (line.product.slug === slug ? { ...line, quantity } : line));
     });
   }, []);
 
@@ -93,10 +93,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
     let count = 0;
     let price = 0;
     for (const line of lines) {
-      const product = getProductBySlug(line.slug);
-      if (!product) continue;
       count += line.quantity;
-      price += product.priceFrom * line.quantity;
+      price += line.product.priceFrom * line.quantity;
     }
     return { totalCount: count, totalPrice: price };
   }, [lines]);

@@ -4,15 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import { MessageCircle, Phone, X } from "lucide-react";
 import { clsx } from "clsx";
 import { useLanguage } from "@/lib/i18n/language-provider";
+import type { getSiteSettings } from "@/lib/cms/settings";
 import { ZaloIcon, MessengerIcon } from "@/components/icons/social";
 
-const CONTACT_LINKS = {
-  phone: "tel:+84900000000",
-  zalo: "https://zalo.me/0900000000",
-  messenger: "https://m.me/songnguyenessentialoils",
-};
-
-export function ContactPopup() {
+export function ContactPopup({ settings }: { settings: Awaited<ReturnType<typeof getSiteSettings>> }) {
   const { dict } = useLanguage();
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -38,12 +33,22 @@ export function ContactPopup() {
   }, [open]);
 
   const items = [
-    { key: "phone", label: dict.contactPopup.phone, href: CONTACT_LINKS.phone, Icon: Phone, external: false },
-    { key: "zalo", label: dict.contactPopup.zalo, href: CONTACT_LINKS.zalo, Icon: ZaloIcon, external: true },
+    ...(settings.phone
+      ? [
+          {
+            key: "phone",
+            label: dict.contactPopup.phone,
+            href: `tel:${settings.phone}`,
+            Icon: Phone,
+            external: false,
+          },
+        ]
+      : []),
+    { key: "zalo", label: dict.contactPopup.zalo, href: settings.zaloUrl, Icon: ZaloIcon, external: true },
     {
       key: "messenger",
       label: dict.contactPopup.messenger,
-      href: CONTACT_LINKS.messenger,
+      href: settings.messengerUrl,
       Icon: MessengerIcon,
       external: true,
     },
