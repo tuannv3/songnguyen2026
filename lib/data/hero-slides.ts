@@ -46,6 +46,7 @@ export const heroSlides: HeroSlide[] = [
     ctaSecondary: { label: { vi: "Nhận báo giá", en: "Get a Quote" }, href: "/qua-tang-doanh-nghiep#bao-gia" },
     bottleColors: ["#B6924F", "#7B5A6B"],
     glowColor: "rgba(182,146,79,0.32)",
+    image: "/hero/slide-2-qua-tang-doanh-nghiep.jpg",
   },
   {
     eyebrow: { vi: "Được yêu thích nhất", en: "Most Loved" },
