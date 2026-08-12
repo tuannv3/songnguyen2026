@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { Check, ChevronRight, Minus, Plus, ShoppingBag, CheckCircle2 } from "lucide-react";
+import { Check, ChevronRight, Minus, Plus, ShoppingBag, CheckCircle2, ExternalLink } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/language-provider";
 import { pick } from "@/lib/i18n/types";
 import { categoryLabels, getRelatedProducts, type Product } from "@/lib/data/products";
@@ -153,6 +153,17 @@ export function ProductDetailContent({ product }: { product: Product }) {
               </Button>
               <Button href="/lien-he" variant="outline" size="lg">
                 {dict.common.addToInquiry}
+              </Button>
+              <Button
+                href={product.shopeeUrl ?? "#"}
+                target={product.shopeeUrl ? "_blank" : undefined}
+                rel={product.shopeeUrl ? "noopener noreferrer" : undefined}
+                variant="outline"
+                size="lg"
+                className="border-[#EE4D2D] text-[#EE4D2D] hover:bg-[#EE4D2D] hover:text-white"
+              >
+                <ExternalLink className="h-4 w-4" />
+                {dict.common.buyOnShopee}
               </Button>
             </div>
             <p className="mt-3 text-xs text-muted-foreground">{dict.products.inquiryNote}</p>

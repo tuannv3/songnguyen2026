@@ -13,6 +13,8 @@ export type Product = {
   bottleVariant?: "dropper" | "diffuser" | "car";
   /** Path under /public, e.g. "/products/tinh-dau-cam.jpg". When set, replaces the illustrated placeholder with a real photo. */
   image?: string;
+  /** Shopee product listing URL. Falls back to "#" until each product's real link is provided. */
+  shopeeUrl?: string;
   accentColor: string;
   shortDescription: Bilingual;
   description: Bilingual;
