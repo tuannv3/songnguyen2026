@@ -178,7 +178,7 @@ export function Hero({ slides: heroSlides }: { slides: HeroSlide[] }) {
                   {slide.image ? (
                     <div
                       className={clsx(
-                        "hero-visual relative aspect-[4/5] w-full max-w-sm overflow-hidden rounded-[2rem] ring-1 ring-white/15 shadow-2xl",
+                        "hero-visual relative aspect-[4/5] w-full max-w-sm",
                         active && "is-active"
                       )}
                     >
