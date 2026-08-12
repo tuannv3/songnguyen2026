@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState, type ReactNode } from "react";
+import Image from "next/image";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { clsx } from "clsx";
 import { useLanguage } from "@/lib/i18n/language-provider";
@@ -174,16 +175,34 @@ export function Hero() {
 
                 <div className="relative flex w-full max-w-md items-center justify-center lg:max-w-lg">
                   <div className="absolute h-72 w-72 rounded-full bg-primary-light/20 blur-3xl" aria-hidden="true" />
-                  <div className={clsx("hero-visual relative grid grid-cols-2 gap-5 md:gap-8", active && "is-active")}>
-                    <ProductBottle
-                      color={slide.bottleColors[0]}
-                      className="h-64 w-auto translate-y-6 drop-shadow-2xl md:h-80"
-                    />
-                    <ProductBottle
-                      color={slide.bottleColors[1]}
-                      className="h-52 w-auto -translate-y-4 drop-shadow-2xl md:h-64"
-                    />
-                  </div>
+                  {slide.image ? (
+                    <div
+                      className={clsx(
+                        "hero-visual relative aspect-[4/5] w-full max-w-sm overflow-hidden rounded-[2rem] ring-1 ring-white/15 shadow-2xl",
+                        active && "is-active"
+                      )}
+                    >
+                      <Image
+                        src={slide.image}
+                        alt=""
+                        fill
+                        sizes="(min-width: 1024px) 32vw, 80vw"
+                        className="object-contain"
+                        priority={slideIndex === 0}
+                      />
+                    </div>
+                  ) : (
+                    <div className={clsx("hero-visual relative grid grid-cols-2 gap-5 md:gap-8", active && "is-active")}>
+                      <ProductBottle
+                        color={slide.bottleColors[0]}
+                        className="h-64 w-auto translate-y-6 drop-shadow-2xl md:h-80"
+                      />
+                      <ProductBottle
+                        color={slide.bottleColors[1]}
+                        className="h-52 w-auto -translate-y-4 drop-shadow-2xl md:h-64"
+                      />
+                    </div>
+                  )}
                 </div>
               </Container>
             </div>

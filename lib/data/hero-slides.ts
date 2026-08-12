@@ -8,6 +8,8 @@ export type HeroSlide = {
   ctaSecondary?: { label: Bilingual; href: string };
   bottleColors: [string, string];
   glowColor: string;
+  /** Path under /public, e.g. "/hero/slide-1.jpg". When set, replaces the two illustrated bottles with a real photo. */
+  image?: string;
 };
 
 export const heroSlides: HeroSlide[] = [
@@ -25,6 +27,7 @@ export const heroSlides: HeroSlide[] = [
     ctaSecondary: { label: { vi: "Câu chuyện thương hiệu", en: "Our Story" }, href: "/ve-chung-toi" },
     bottleColors: ["#8FB3A8", "#B6924F"],
     glowColor: "rgba(79,142,131,0.35)",
+    image: "/hero/slide-1-thuong-hieu.jpg",
   },
   {
     eyebrow: { vi: "Dành cho doanh nghiệp", en: "For Businesses" },
