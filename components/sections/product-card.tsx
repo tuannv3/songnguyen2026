@@ -2,15 +2,17 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ShoppingBag } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/language-provider";
 import { pick } from "@/lib/i18n/types";
 import type { Product } from "@/lib/data/products";
+import { useCart } from "@/lib/cart/cart-provider";
 import { ProductBottle } from "@/components/icons/product-bottle";
 import { Badge } from "@/components/ui/badge";
 
 export function ProductCard({ product }: { product: Product }) {
   const { locale, dict } = useLanguage();
+  const { addItem } = useCart();
   const bottleVariant = product.bottleVariant ?? (product.category === "accessory" ? "diffuser" : "dropper");
 
   return (
@@ -34,6 +36,18 @@ export function ProductCard({ product }: { product: Product }) {
                 : dict.common.featured}
           </Badge>
         ) : null}
+        <button
+          type="button"
+          onClick={(event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            addItem(product.slug);
+          }}
+          aria-label={dict.cart.addToCart}
+          className="absolute right-4 top-4 z-10 inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-card text-ink shadow-soft transition-colors hover:bg-primary hover:text-on-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        >
+          <ShoppingBag className="h-4 w-4" aria-hidden="true" />
+        </button>
         {product.image ? (
           <Image
             src={product.image}

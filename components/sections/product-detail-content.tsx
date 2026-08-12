@@ -2,10 +2,12 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Check, ChevronRight } from "lucide-react";
+import { useState } from "react";
+import { Check, ChevronRight, Minus, Plus, ShoppingBag, CheckCircle2 } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/language-provider";
 import { pick } from "@/lib/i18n/types";
 import { categoryLabels, getRelatedProducts, type Product } from "@/lib/data/products";
+import { useCart } from "@/lib/cart/cart-provider";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -15,8 +17,11 @@ import { SectionHeading } from "@/components/ui/section-heading";
 
 export function ProductDetailContent({ product }: { product: Product }) {
   const { dict, locale } = useLanguage();
+  const { addItem } = useCart();
   const related = getRelatedProducts(product);
   const bottleVariant = product.bottleVariant ?? (product.category === "accessory" ? "diffuser" : "dropper");
+  const [quantity, setQuantity] = useState(1);
+  const [justAdded, setJustAdded] = useState(false);
 
   const specs: { label: string; value: string }[] = [
     { label: dict.products.volumeLabel, value: product.volume },
@@ -104,8 +109,49 @@ export function ProductDetailContent({ product }: { product: Product }) {
               ))}
             </ul>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button href="/lien-he" size="lg">
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <div className="flex items-center gap-1 rounded-full border border-border">
+                <button
+                  type="button"
+                  onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                  aria-label={dict.cart.decreaseQuantity}
+                  className="inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full text-ink/70 transition-colors hover:bg-muted"
+                >
+                  <Minus className="h-4 w-4" aria-hidden="true" />
+                </button>
+                <span className="w-8 text-center text-sm font-medium text-ink" aria-label={dict.cart.quantity}>
+                  {quantity}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setQuantity((q) => q + 1)}
+                  aria-label={dict.cart.increaseQuantity}
+                  className="inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full text-ink/70 transition-colors hover:bg-muted"
+                >
+                  <Plus className="h-4 w-4" aria-hidden="true" />
+                </button>
+              </div>
+              <Button
+                size="lg"
+                onClick={() => {
+                  addItem(product.slug, quantity);
+                  setJustAdded(true);
+                  window.setTimeout(() => setJustAdded(false), 2000);
+                }}
+              >
+                {justAdded ? (
+                  <>
+                    <CheckCircle2 className="h-4 w-4" />
+                    {dict.cart.added}
+                  </>
+                ) : (
+                  <>
+                    <ShoppingBag className="h-4 w-4" />
+                    {dict.cart.addToCart}
+                  </>
+                )}
+              </Button>
+              <Button href="/lien-he" variant="outline" size="lg">
                 {dict.common.addToInquiry}
               </Button>
             </div>

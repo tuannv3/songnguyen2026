@@ -3,9 +3,10 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Menu, X, Languages } from "lucide-react";
+import { Menu, X, Languages, ShoppingBag } from "lucide-react";
 import { clsx } from "clsx";
 import { useLanguage } from "@/lib/i18n/language-provider";
+import { useCart } from "@/lib/cart/cart-provider";
 import { Logo } from "@/components/icons/logo";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
@@ -22,6 +23,7 @@ const navItems = [
 
 export function SiteHeader() {
   const { dict, locale, toggleLocale } = useLanguage();
+  const { totalCount, open: openCart } = useCart();
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -83,21 +85,49 @@ export function SiteHeader() {
             <Languages className="h-3.5 w-3.5" aria-hidden="true" />
             {locale === "vi" ? "VI" : "EN"}
           </button>
+          <button
+            type="button"
+            onClick={openCart}
+            aria-label={dict.cart.openCart}
+            className="relative inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-ink/75 transition-colors hover:bg-primary/5 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            <ShoppingBag className="h-5 w-5" aria-hidden="true" />
+            {totalCount > 0 ? (
+              <span className="absolute -right-0.5 -top-0.5 flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-accent px-1 text-[0.65rem] font-semibold text-on-accent">
+                {totalCount}
+              </span>
+            ) : null}
+          </button>
           <Button href="/lien-he" size="sm">
             {dict.nav.cta}
           </Button>
         </div>
 
-        <button
-          type="button"
-          className="inline-flex items-center justify-center rounded-full p-2 text-ink xl:hidden cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          onClick={() => setMobileOpen((v) => !v)}
-          aria-expanded={mobileOpen}
-          aria-controls="mobile-nav"
-          aria-label={mobileOpen ? dict.common.close : "Menu"}
-        >
-          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+        <div className="flex items-center gap-1 xl:hidden">
+          <button
+            type="button"
+            onClick={openCart}
+            aria-label={dict.cart.openCart}
+            className="relative inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-ink transition-colors hover:bg-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            <ShoppingBag className="h-5 w-5" aria-hidden="true" />
+            {totalCount > 0 ? (
+              <span className="absolute -right-0.5 -top-0.5 flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-accent px-1 text-[0.65rem] font-semibold text-on-accent">
+                {totalCount}
+              </span>
+            ) : null}
+          </button>
+          <button
+            type="button"
+            className="inline-flex items-center justify-center rounded-full p-2 text-ink cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            onClick={() => setMobileOpen((v) => !v)}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-nav"
+            aria-label={mobileOpen ? dict.common.close : "Menu"}
+          >
+            {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </Container>
 
       <div
