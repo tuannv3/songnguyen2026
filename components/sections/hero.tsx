@@ -190,38 +190,42 @@ export function Hero() {
           );
         })}
 
+      </div>
+
+      <div className="relative z-10 flex items-center justify-center gap-4 pb-6">
         <button
           type="button"
           onClick={() => goTo(index - 1)}
           aria-label={dict.carousel.previousSlide}
-          className="absolute left-3 top-1/2 z-20 hidden -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/20 bg-white/5 p-2.5 text-white backdrop-blur-sm transition-colors hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent sm:flex md:left-6"
+          className="hidden cursor-pointer items-center justify-center rounded-full border border-white/20 bg-white/5 p-2 text-white backdrop-blur-sm transition-colors hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent sm:flex"
         >
-          <ChevronLeft className="h-5 w-5" aria-hidden="true" />
+          <ChevronLeft className="h-4 w-4" aria-hidden="true" />
         </button>
+
+        <div className="flex items-center gap-2">
+          {heroSlides.map((slide, slideIndex) => (
+            <button
+              key={slide.title.vi}
+              type="button"
+              onClick={() => goTo(slideIndex)}
+              aria-label={`${dict.carousel.goToSlide} ${slideIndex + 1}`}
+              aria-current={slideIndex === index}
+              className={clsx(
+                "h-1.5 cursor-pointer rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
+                slideIndex === index ? "w-7 bg-accent" : "w-1.5 bg-white/30 hover:bg-white/50"
+              )}
+            />
+          ))}
+        </div>
+
         <button
           type="button"
           onClick={() => goTo(index + 1)}
           aria-label={dict.carousel.nextSlide}
-          className="absolute right-3 top-1/2 z-20 hidden -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/20 bg-white/5 p-2.5 text-white backdrop-blur-sm transition-colors hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent sm:flex md:right-6"
+          className="hidden cursor-pointer items-center justify-center rounded-full border border-white/20 bg-white/5 p-2 text-white backdrop-blur-sm transition-colors hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent sm:flex"
         >
-          <ChevronRight className="h-5 w-5" aria-hidden="true" />
+          <ChevronRight className="h-4 w-4" aria-hidden="true" />
         </button>
-      </div>
-
-      <div className="relative z-10 flex items-center justify-center gap-2 pb-6">
-        {heroSlides.map((slide, slideIndex) => (
-          <button
-            key={slide.title.vi}
-            type="button"
-            onClick={() => goTo(slideIndex)}
-            aria-label={`${dict.carousel.goToSlide} ${slideIndex + 1}`}
-            aria-current={slideIndex === index}
-            className={clsx(
-              "h-1.5 cursor-pointer rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
-              slideIndex === index ? "w-7 bg-accent" : "w-1.5 bg-white/30 hover:bg-white/50"
-            )}
-          />
-        ))}
       </div>
 
       <Container className="relative z-10 pb-12 md:pb-16">

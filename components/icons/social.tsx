@@ -34,3 +34,11 @@ export function ZaloIcon({ className }: IconProps) {
     </svg>
   );
 }
+
+export function MessengerIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2.5c-5.5 0-9.9 4.1-9.9 9.3 0 2.9 1.4 5.5 3.6 7.2v3.5l3.3-1.8c.9.25 1.9.4 2.9.4 5.5 0 9.9-4.1 9.9-9.3S17.4 2.5 12 2.5zm.9 12.4-2.5-2.7-4.9 2.7 5.4-5.7 2.6 2.7 4.8-2.7z" />
+    </svg>
+  );
+}
