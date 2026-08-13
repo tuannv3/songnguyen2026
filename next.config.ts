@@ -9,6 +9,12 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  experimental: {
+    serverActions: {
+      // Default 1MB is too small for admin image uploads (hero slides, products, news).
+      bodySizeLimit: "10mb",
+    },
+  },
 };
 
 export default nextConfig;
