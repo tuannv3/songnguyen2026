@@ -90,10 +90,6 @@ export const dictionaries = {
       messenger: "Nhắn Messenger",
     },
     home: {
-      statBrands: "năm kinh nghiệm chưng cất",
-      statProducts: "dòng sản phẩm tinh dầu",
-      statClients: "đối tác & doanh nghiệp tin dùng",
-      statOrigin: "vùng nguyên liệu hữu cơ",
       bestSellersEyebrow: "Được yêu thích nhất",
       bestSellersHeading: "Sản phẩm bán chạy",
       bestSellersSub: "Những dòng tinh dầu được khách hàng và đối tác tin chọn nhiều nhất.",
@@ -248,10 +244,6 @@ export const dictionaries = {
       messenger: "Message on Messenger",
     },
     home: {
-      statBrands: "years of distilling craft",
-      statProducts: "essential oil product lines",
-      statClients: "trusted partners & businesses",
-      statOrigin: "organic growing regions",
       bestSellersEyebrow: "Most Loved",
       bestSellersHeading: "Bestsellers",
       bestSellersSub: "The essential oils our customers and partners choose most.",

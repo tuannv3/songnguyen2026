@@ -4,6 +4,7 @@ import { Gift, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/language-provider";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 export function CorporateTeaser() {
   const { dict } = useLanguage();
@@ -11,7 +12,10 @@ export function CorporateTeaser() {
   return (
     <section className="py-4 md:py-6">
       <Container>
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-dark via-primary to-primary-light px-8 py-14 text-white md:px-16 md:py-20">
+        <ScrollReveal
+          direction="up"
+          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-dark via-primary to-primary-light px-8 py-14 text-white md:px-16 md:py-20"
+        >
           <div
             className="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-accent/25 blur-3xl"
             aria-hidden="true"
@@ -32,7 +36,7 @@ export function CorporateTeaser() {
               <ArrowRight className="h-4 w-4" />
             </Button>
           </div>
-        </div>
+        </ScrollReveal>
       </Container>
     </section>
   );

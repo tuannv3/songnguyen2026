@@ -203,3 +203,21 @@ model SiteSettings {
   youtubeUrl     String?
   updatedAt      DateTime @updatedAt
 }
+
+/// Singleton row (id = "singleton") holding the 4 stat counters shown under the homepage hero.
+model HomeStats {
+  id           String   @id @default("singleton")
+  stat1Value   String
+  stat1LabelVi String
+  stat1LabelEn String
+  stat2Value   String
+  stat2LabelVi String
+  stat2LabelEn String
+  stat3Value   String
+  stat3LabelVi String
+  stat3LabelEn String
+  stat4Value   String
+  stat4LabelVi String
+  stat4LabelEn String
+  updatedAt    DateTime @updatedAt
+}

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { BlobShape, BotanicalPattern } from "@/components/icons/botanical";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 const points = [
   { icon: Leaf, key: "organic" as const },
@@ -32,12 +33,12 @@ export function Philosophy() {
   return (
     <section className="bg-muted/60 py-20 md:py-28">
       <Container className="grid grid-cols-1 items-center gap-14 lg:grid-cols-2">
-        <div className="relative order-2 flex aspect-square items-center justify-center lg:order-1">
+        <ScrollReveal direction="left" className="relative order-2 flex aspect-square items-center justify-center lg:order-1">
           <BlobShape color="var(--color-primary)" className="absolute inset-0 h-full w-full opacity-10" />
           <BotanicalPattern className="h-3/4 w-3/4 text-primary" />
-        </div>
+        </ScrollReveal>
 
-        <div className="order-1 lg:order-2">
+        <ScrollReveal direction="right" className="order-1 lg:order-2">
           <SectionHeading
             eyebrow={dict.home.philosophyEyebrow}
             title={dict.home.philosophyHeading}
@@ -61,7 +62,7 @@ export function Philosophy() {
           <Button href="/ve-chung-toi" variant="outline" className="mt-8">
             {dict.home.philosophyCta}
           </Button>
-        </div>
+        </ScrollReveal>
       </Container>
     </section>
   );

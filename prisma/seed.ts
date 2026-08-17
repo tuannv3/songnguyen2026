@@ -140,12 +140,36 @@ async function seedSiteSettings() {
   console.log("✓ Site settings ready");
 }
 
+async function seedHomeStats() {
+  await prisma.homeStats.upsert({
+    where: { id: "singleton" },
+    update: {},
+    create: {
+      id: "singleton",
+      stat1Value: "5+",
+      stat1LabelVi: "năm kinh nghiệm chưng cất",
+      stat1LabelEn: "years of distilling craft",
+      stat2Value: "12+",
+      stat2LabelVi: "dòng sản phẩm tinh dầu",
+      stat2LabelEn: "essential oil product lines",
+      stat3Value: "80+",
+      stat3LabelVi: "đối tác & doanh nghiệp tin dùng",
+      stat3LabelEn: "trusted partners & businesses",
+      stat4Value: "6",
+      stat4LabelVi: "vùng nguyên liệu hữu cơ",
+      stat4LabelEn: "organic growing regions",
+    },
+  });
+  console.log("✓ Home stats ready");
+}
+
 async function main() {
   await seedAdminUser();
   await seedAboutContent();
   await seedCorporateGiftsContent();
   await seedCareersPageContent();
   await seedSiteSettings();
+  await seedHomeStats();
 }
 
 main()

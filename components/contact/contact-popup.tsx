@@ -66,10 +66,10 @@ export function ContactPopup({ settings }: { settings: Awaited<ReturnType<typeof
           aria-hidden={!open}
           inert={!open ? true : undefined}
           className={clsx(
-            "flex items-center gap-2.5 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
-            open ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3 opacity-0"
+            "flex items-center gap-2.5",
+            open ? "animate-icon-pop" : "pointer-events-none translate-y-2 scale-[0.4] opacity-0"
           )}
-          style={{ transitionDelay: open ? `${(items.length - index) * 50}ms` : "0ms" }}
+          style={open ? { animationDelay: `${(items.length - index) * 60}ms` } : undefined}
         >
           <span className="rounded-full bg-ink px-3 py-1.5 text-xs font-medium text-white shadow-soft">
             {label}
@@ -85,7 +85,10 @@ export function ContactPopup({ settings }: { settings: Awaited<ReturnType<typeof
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-label={open ? dict.contactPopup.close : dict.contactPopup.label}
-        className="inline-flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-primary text-on-primary shadow-lift transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        className={clsx(
+          "inline-flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-primary text-on-primary shadow-lift transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+          !open && "animate-pulse-ring"
+        )}
       >
         {open ? (
           <X className="h-6 w-6" aria-hidden="true" />

@@ -5,21 +5,17 @@ import Image from "next/image";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { clsx } from "clsx";
 import { useLanguage } from "@/lib/i18n/language-provider";
+import { pick } from "@/lib/i18n/types";
 import type { HeroSlide } from "@/lib/data/hero-slides";
+import type { getHomeStats } from "@/lib/cms/home-stats";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { ProductBottle } from "@/components/icons/product-bottle";
+import { CountUp } from "@/components/ui/count-up";
 
 const AUTOPLAY_MS = 6000;
 const WORD_BASE_DELAY = 0.1;
 const WORD_STEP = 0.06;
-
-const stats: { value: string; key: "statBrands" | "statProducts" | "statClients" | "statOrigin" }[] = [
-  { value: "5+", key: "statBrands" },
-  { value: "12+", key: "statProducts" },
-  { value: "80+", key: "statClients" },
-  { value: "6", key: "statOrigin" },
-];
 
 function AnimatedTitle({ text, active, className }: { text: string; active: boolean; className?: string }) {
   const words = text.split(" ");
@@ -62,7 +58,13 @@ function RevealUp({
   );
 }
 
-export function Hero({ slides: heroSlides }: { slides: HeroSlide[] }) {
+export function Hero({
+  slides: heroSlides,
+  stats,
+}: {
+  slides: HeroSlide[];
+  stats: Awaited<ReturnType<typeof getHomeStats>>["items"];
+}) {
   const { dict, locale } = useLanguage();
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -249,11 +251,13 @@ export function Hero({ slides: heroSlides }: { slides: HeroSlide[] }) {
 
       <Container className="relative z-10 pb-12 md:pb-16">
         <dl className="grid grid-cols-2 gap-x-6 gap-y-8 border-t border-white/10 pt-8 sm:grid-cols-4 lg:gap-x-8">
-          {stats.map((stat) => (
-            <div key={stat.key} className="text-center">
-              <dt className="sr-only">{dict.home[stat.key]}</dt>
-              <dd className="font-serif-display text-3xl text-accent-light">{stat.value}</dd>
-              <p className="mt-1 text-xs leading-snug text-white/55">{dict.home[stat.key]}</p>
+          {stats.map((stat, index) => (
+            <div key={index} className="text-center">
+              <dt className="sr-only">{pick(stat.label, locale)}</dt>
+              <dd className="font-serif-display text-3xl text-accent-light">
+                <CountUp value={stat.value} />
+              </dd>
+              <p className="mt-1 text-xs leading-snug text-white/55">{pick(stat.label, locale)}</p>
             </div>
           ))}
         </dl>

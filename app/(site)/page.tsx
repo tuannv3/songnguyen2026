@@ -9,17 +9,19 @@ import { CtaBand } from "@/components/sections/cta-band";
 import { getHeroSlides } from "@/lib/cms/hero";
 import { getProducts } from "@/lib/cms/products";
 import { getNewsPosts } from "@/lib/cms/news";
+import { getHomeStats } from "@/lib/cms/home-stats";
 
 export default async function Home() {
-  const [heroSlides, products, newsPosts] = await Promise.all([
+  const [heroSlides, products, newsPosts, homeStats] = await Promise.all([
     getHeroSlides(),
     getProducts(),
     getNewsPosts(),
+    getHomeStats(),
   ]);
 
   return (
     <>
-      <Hero slides={heroSlides} />
+      <Hero slides={heroSlides} stats={homeStats.items} />
       <BestSellers products={products} />
       <Philosophy />
       <Science />

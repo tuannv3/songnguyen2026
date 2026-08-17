@@ -5,6 +5,7 @@ import { useLanguage } from "@/lib/i18n/language-provider";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ProductBottle } from "@/components/icons/product-bottle";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 const items = [
   {
@@ -55,11 +56,11 @@ export function Science() {
         aria-hidden="true"
       />
       <Container className="relative grid grid-cols-1 items-center gap-14 lg:grid-cols-[0.9fr_1.1fr]">
-        <div className="order-2 flex items-center justify-center gap-6 lg:order-1">
+        <ScrollReveal direction="left" className="order-2 flex items-center justify-center gap-6 lg:order-1">
           <ProductBottle color="#4A8E83" className="h-72 w-auto drop-shadow-2xl md:h-96" />
-        </div>
+        </ScrollReveal>
 
-        <div className="order-1 lg:order-2">
+        <ScrollReveal direction="right" className="order-1 lg:order-2">
           <SectionHeading
             eyebrow={dict.home.ingredientsEyebrow}
             title={dict.home.ingredientsHeading}
@@ -80,7 +81,7 @@ export function Science() {
               </div>
             ))}
           </dl>
-        </div>
+        </ScrollReveal>
       </Container>
     </section>
   );
