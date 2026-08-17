@@ -150,6 +150,13 @@
   }
 }
 
+html,
+body {
+  /* Prevent horizontal scroll from transient transforms (e.g. ScrollReveal's
+     pre-reveal translate-x) that would otherwise briefly widen the page. */
+  overflow-x: hidden;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
