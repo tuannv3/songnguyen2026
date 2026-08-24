@@ -163,6 +163,18 @@ async function seedHomeStats() {
   console.log("✓ Home stats ready");
 }
 
+async function seedHomeContent() {
+  await prisma.homeContent.upsert({
+    where: { id: "singleton" },
+    update: {},
+    create: {
+      id: "singleton",
+      philosophyImage: null,
+    },
+  });
+  console.log("✓ Home content ready");
+}
+
 async function main() {
   await seedAdminUser();
   await seedAboutContent();
@@ -170,6 +182,7 @@ async function main() {
   await seedCareersPageContent();
   await seedSiteSettings();
   await seedHomeStats();
+  await seedHomeContent();
 }
 
 main()

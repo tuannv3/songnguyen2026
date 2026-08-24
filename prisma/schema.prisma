@@ -221,3 +221,11 @@ model HomeStats {
   stat4LabelEn String
   updatedAt    DateTime @updatedAt
 }
+
+/// Singleton row (id = "singleton") holding homepage section images that would
+/// otherwise be static illustrations (e.g. the "Triết lý thương hiệu" graphic).
+model HomeContent {
+  id              String   @id @default("singleton")
+  philosophyImage String?
+  updatedAt       DateTime @updatedAt
+}

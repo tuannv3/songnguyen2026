@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Leaf, Droplets, Recycle } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/language-provider";
 import { Button } from "@/components/ui/button";
@@ -27,15 +28,27 @@ const pointLabels = {
   },
 };
 
-export function Philosophy() {
+export function Philosophy({ image }: { image?: string | null }) {
   const { dict, locale } = useLanguage();
 
   return (
     <section className="bg-muted/60 py-20 md:py-28">
       <Container className="grid grid-cols-1 items-center gap-14 lg:grid-cols-2">
         <ScrollReveal direction="left" className="relative order-2 flex aspect-square items-center justify-center lg:order-1">
-          <BlobShape color="var(--color-primary)" className="absolute inset-0 h-full w-full opacity-10" />
-          <BotanicalPattern className="h-3/4 w-3/4 text-primary" />
+          {image ? (
+            <Image
+              src={image}
+              alt=""
+              fill
+              sizes="(min-width: 1024px) 40vw, 90vw"
+              className="rounded-[2rem] object-cover"
+            />
+          ) : (
+            <>
+              <BlobShape color="var(--color-primary)" className="absolute inset-0 h-full w-full opacity-10" />
+              <BotanicalPattern className="h-3/4 w-3/4 text-primary" />
+            </>
+          )}
         </ScrollReveal>
 
         <ScrollReveal direction="right" className="order-1 lg:order-2">

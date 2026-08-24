@@ -10,20 +10,22 @@ import { getHeroSlides } from "@/lib/cms/hero";
 import { getProducts } from "@/lib/cms/products";
 import { getNewsPosts } from "@/lib/cms/news";
 import { getHomeStats } from "@/lib/cms/home-stats";
+import { getHomeContent } from "@/lib/cms/home-content";
 
 export default async function Home() {
-  const [heroSlides, products, newsPosts, homeStats] = await Promise.all([
+  const [heroSlides, products, newsPosts, homeStats, homeContent] = await Promise.all([
     getHeroSlides(),
     getProducts(),
     getNewsPosts(),
     getHomeStats(),
+    getHomeContent(),
   ]);
 
   return (
     <>
       <Hero slides={heroSlides} stats={homeStats.items} />
       <BestSellers products={products} />
-      <Philosophy />
+      <Philosophy image={homeContent.philosophyImage} />
       <Science />
       <Testimonials />
       <CorporateTeaser />

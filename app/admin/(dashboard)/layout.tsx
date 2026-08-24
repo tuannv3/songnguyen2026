@@ -9,6 +9,7 @@ const navItems = [
   { href: "/admin", label: "Tổng quan" },
   { href: "/admin/hero-slides", label: "Slide trang chủ" },
   { href: "/admin/home-stats", label: "Chỉ số thống kê" },
+  { href: "/admin/home-content", label: "Hình ảnh trang chủ" },
   { href: "/admin/products", label: "Sản phẩm" },
   { href: "/admin/news", label: "Tin tức" },
   { href: "/admin/careers", label: "Tuyển dụng" },
