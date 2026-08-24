@@ -2,10 +2,20 @@
 
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/db/client";
-import { str, parseRepeatableField } from "@/lib/cms/form-utils";
+import { str, parseRepeatableField, file, files, strings } from "@/lib/cms/form-utils";
+import { uploadImage, resolveImageField } from "@/lib/cms/upload";
 import type { ActionState } from "@/lib/cms/actions/types";
 
 export async function updateAboutContent(_prevState: ActionState, formData: FormData): Promise<ActionState> {
+  const existing = await prisma.aboutContent.findUniqueOrThrow({ where: { id: "singleton" } });
+
+  const storyImage = await resolveImageField(file(formData, "storyImage"), "about", existing.storyImage);
+
+  const keptCertImages = strings(formData, "certImagesExisting");
+  const newCertFiles = files(formData, "certImagesNew");
+  const newCertImages = await Promise.all(newCertFiles.map((f) => uploadImage(f, "about")));
+  const certImages = [...keptCertImages, ...newCertImages];
+
   const values = parseRepeatableField(formData, "values", [
     "titleVi",
     "bodyVi",
@@ -39,6 +49,7 @@ export async function updateAboutContent(_prevState: ActionState, formData: Form
       storyHeadingEn: str(formData, "storyHeadingEn"),
       storyBodyVi: storyBodyPairs.map((p) => p.vi),
       storyBodyEn: storyBodyPairs.map((p) => p.en),
+      storyImage,
       missionHeadingVi: str(formData, "missionHeadingVi"),
       missionHeadingEn: str(formData, "missionHeadingEn"),
       missionBodyVi: str(formData, "missionBodyVi"),
@@ -53,6 +64,7 @@ export async function updateAboutContent(_prevState: ActionState, formData: Form
       certHeadingEn: str(formData, "certHeadingEn"),
       certBodyVi: str(formData, "certBodyVi"),
       certBodyEn: str(formData, "certBodyEn"),
+      certImages,
     },
   });
 

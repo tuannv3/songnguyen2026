@@ -18,6 +18,16 @@ export function file(formData: FormData, key: string): File | null {
   return value instanceof File && value.size > 0 ? value : null;
 }
 
+/** Reads every File submitted under `key` (e.g. a multi-file <input>), ignoring empty entries. */
+export function files(formData: FormData, key: string): File[] {
+  return formData.getAll(key).filter((value): value is File => value instanceof File && value.size > 0);
+}
+
+/** Reads every string value submitted under `key` (e.g. repeated hidden inputs). */
+export function strings(formData: FormData, key: string): string[] {
+  return formData.getAll(key).filter((value): value is string => typeof value === "string" && value.length > 0);
+}
+
 /**
  * Parses fields submitted by RepeatableFieldList, named `${name}.${index}.${key}`,
  * back into an ordered array of row objects.

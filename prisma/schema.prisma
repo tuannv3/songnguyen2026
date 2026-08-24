@@ -125,6 +125,7 @@ model AboutContent {
   storyHeadingEn    String
   storyBodyVi       Json
   storyBodyEn       Json
+  storyImage        String?
   missionHeadingVi  String
   missionHeadingEn  String
   missionBodyVi     String
@@ -139,6 +140,7 @@ model AboutContent {
   certHeadingEn     String
   certBodyVi        String
   certBodyEn        String
+  certImages        Json     @default("[]")
   updatedAt         DateTime @updatedAt
 }
 

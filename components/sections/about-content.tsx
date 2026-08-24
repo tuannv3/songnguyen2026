@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Sparkles, ShieldCheck, Sprout, HeartHandshake, Award } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/language-provider";
 import { pick } from "@/lib/i18n/types";
@@ -25,7 +26,17 @@ export function AboutContent({ content }: { content: Awaited<ReturnType<typeof g
       <section className="py-16 md:py-24">
         <Container className="grid grid-cols-1 items-center gap-14 lg:grid-cols-2">
           <div className="relative order-2 flex aspect-square items-center justify-center lg:order-1">
-            <BotanicalPattern className="h-3/4 w-3/4 text-primary" />
+            {content.storyImage ? (
+              <Image
+                src={content.storyImage}
+                alt=""
+                fill
+                sizes="(min-width: 1024px) 40vw, 90vw"
+                className="rounded-[2rem] object-cover"
+              />
+            ) : (
+              <BotanicalPattern className="h-3/4 w-3/4 text-primary" />
+            )}
           </div>
           <div className="order-1 lg:order-2">
             <SectionHeading title={pick(content.storyHeading, locale)} />
@@ -107,6 +118,19 @@ export function AboutContent({ content }: { content: Awaited<ReturnType<typeof g
           </span>
           <h2 className="font-serif-display text-2xl text-ink">{pick(content.certHeading, locale)}</h2>
           <p className="text-sm leading-relaxed text-muted-foreground">{pick(content.certBody, locale)}</p>
+
+          {content.certImages.length > 0 ? (
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-4">
+              {content.certImages.map((url) => (
+                <div
+                  key={url}
+                  className="relative h-32 w-32 overflow-hidden rounded-xl border border-border bg-card shadow-soft sm:h-40 sm:w-40"
+                >
+                  <Image src={url} alt="" fill className="object-contain p-2" />
+                </div>
+              ))}
+            </div>
+          ) : null}
         </Container>
       </section>
     </>

@@ -42,6 +42,7 @@ async function seedAboutContent() {
       storyHeadingEn: "Our Journey",
       storyBodyVi: ["Nội dung câu chuyện thương hiệu — cập nhật trong trang quản trị."],
       storyBodyEn: ["Brand story content — update this from the admin panel."],
+      storyImage: null,
       missionHeadingVi: "Sứ mệnh",
       missionHeadingEn: "Our Mission",
       missionBodyVi: "Nội dung sứ mệnh — cập nhật trong trang quản trị.",
@@ -56,6 +57,7 @@ async function seedAboutContent() {
       certHeadingEn: "Certifications & Standards",
       certBodyVi: "Nội dung chứng nhận — cập nhật trong trang quản trị.",
       certBodyEn: "Certification content — update this from the admin panel.",
+      certImages: [],
     },
   });
   console.log("✓ About content ready");

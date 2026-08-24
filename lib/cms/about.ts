@@ -16,6 +16,7 @@ export async function getAboutContent() {
     subheading: { vi: row.subheadingVi, en: row.subheadingEn },
     storyHeading: { vi: row.storyHeadingVi, en: row.storyHeadingEn },
     storyBody: storyBodyVi.map((vi, i) => ({ vi, en: storyBodyEn[i] ?? "" })),
+    storyImage: row.storyImage,
     missionHeading: { vi: row.missionHeadingVi, en: row.missionHeadingEn },
     missionBody: { vi: row.missionBodyVi, en: row.missionBodyEn },
     valuesHeading: { vi: row.valuesHeadingVi, en: row.valuesHeadingEn },
@@ -31,5 +32,6 @@ export async function getAboutContent() {
     })),
     certHeading: { vi: row.certHeadingVi, en: row.certHeadingEn },
     certBody: { vi: row.certBodyVi, en: row.certBodyEn },
+    certImages: row.certImages as string[],
   };
 }

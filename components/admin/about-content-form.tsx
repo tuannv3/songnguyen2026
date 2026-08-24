@@ -4,6 +4,8 @@ import { useActionState } from "react";
 import { AdminInput } from "@/components/admin/admin-input";
 import { BilingualField } from "@/components/admin/bilingual-field";
 import { RepeatableFieldList } from "@/components/admin/repeatable-field-list";
+import { ImageUploadField } from "@/components/admin/image-upload-field";
+import { MultiImageUploadField } from "@/components/admin/multi-image-upload-field";
 import { FormMessage } from "@/components/admin/form-message";
 import { SaveButton } from "@/components/admin/save-button";
 import { updateAboutContent } from "@/lib/cms/actions/about";
@@ -19,6 +21,7 @@ type Defaults = {
   storyHeadingEn: string;
   storyBodyVi: unknown;
   storyBodyEn: unknown;
+  storyImage: string | null;
   missionHeadingVi: string;
   missionHeadingEn: string;
   missionBodyVi: string;
@@ -33,6 +36,7 @@ type Defaults = {
   certHeadingEn: string;
   certBodyVi: string;
   certBodyEn: string;
+  certImages: unknown;
 };
 
 export function AboutContentForm({ defaults }: { defaults: Defaults }) {
@@ -46,6 +50,7 @@ export function AboutContentForm({ defaults }: { defaults: Defaults }) {
     (defaults.timeline as
       | { yearVi: string; yearEn: string; titleVi: string; bodyVi: string; titleEn: string; bodyEn: string }[]
       | null) ?? [];
+  const certImages = (defaults.certImages as string[] | null) ?? [];
 
   return (
     <form action={formAction} className="space-y-6">
@@ -54,6 +59,7 @@ export function AboutContentForm({ defaults }: { defaults: Defaults }) {
       <BilingualField label="Mô tả" nameVi="subheadingVi" nameEn="subheadingEn" defaultValueVi={defaults.subheadingVi} defaultValueEn={defaults.subheadingEn} as="textarea" />
 
       <BilingualField label="Tiêu đề mục 'Hành trình'" nameVi="storyHeadingVi" nameEn="storyHeadingEn" defaultValueVi={defaults.storyHeadingVi} defaultValueEn={defaults.storyHeadingEn} />
+      <ImageUploadField name="storyImage" label="Hình minh hoạ mục 'Hành trình của chúng tôi'" defaultImageUrl={defaults.storyImage} />
       <RepeatableFieldList
         name="storyBody"
         label="Nội dung hành trình (từng đoạn)"
@@ -107,6 +113,7 @@ export function AboutContentForm({ defaults }: { defaults: Defaults }) {
 
       <BilingualField label="Tiêu đề mục 'Chứng nhận'" nameVi="certHeadingVi" nameEn="certHeadingEn" defaultValueVi={defaults.certHeadingVi} defaultValueEn={defaults.certHeadingEn} />
       <BilingualField label="Nội dung chứng nhận" nameVi="certBodyVi" nameEn="certBodyEn" defaultValueVi={defaults.certBodyVi} defaultValueEn={defaults.certBodyEn} as="textarea" />
+      <MultiImageUploadField name="certImages" label="Ảnh chứng chỉ/kiểm định (có thể thêm nhiều ảnh)" defaultImages={certImages} />
 
       <FormMessage state={state} />
       <SaveButton />
