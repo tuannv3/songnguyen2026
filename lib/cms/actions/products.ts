@@ -54,6 +54,7 @@ export async function createProduct(_prevState: ActionState, formData: FormData)
     return { ok: false, message: "Slug đã tồn tại, vui lòng chọn slug khác." };
   }
 
+  revalidatePath("/");
   revalidatePath("/san-pham");
   redirect("/admin/products");
 }
@@ -73,6 +74,7 @@ export async function updateProduct(
     return { ok: false, message: "Slug đã tồn tại, vui lòng chọn slug khác." };
   }
 
+  revalidatePath("/");
   revalidatePath("/san-pham");
   revalidatePath(`/san-pham/${fields.slug}`);
   if (existing.slug !== fields.slug) revalidatePath(`/san-pham/${existing.slug}`);
@@ -81,6 +83,7 @@ export async function updateProduct(
 
 export async function deleteProduct(id: string) {
   const existing = await prisma.product.delete({ where: { id } });
+  revalidatePath("/");
   revalidatePath("/san-pham");
   revalidatePath(`/san-pham/${existing.slug}`);
   revalidatePath("/admin/products");

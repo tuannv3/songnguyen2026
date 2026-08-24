@@ -38,6 +38,7 @@ export async function createNewsPost(_prevState: ActionState, formData: FormData
   } catch {
     return { ok: false, message: "Slug đã tồn tại, vui lòng chọn slug khác." };
   }
+  revalidatePath("/");
   revalidatePath("/tin-tuc");
   redirect("/admin/news");
 }
@@ -54,6 +55,7 @@ export async function updateNewsPost(
   } catch {
     return { ok: false, message: "Slug đã tồn tại, vui lòng chọn slug khác." };
   }
+  revalidatePath("/");
   revalidatePath("/tin-tuc");
   revalidatePath(`/tin-tuc/${fields.slug}`);
   if (existing.slug !== fields.slug) revalidatePath(`/tin-tuc/${existing.slug}`);
@@ -62,6 +64,7 @@ export async function updateNewsPost(
 
 export async function deleteNewsPost(id: string) {
   const existing = await prisma.newsPost.delete({ where: { id } });
+  revalidatePath("/");
   revalidatePath("/tin-tuc");
   revalidatePath(`/tin-tuc/${existing.slug}`);
   revalidatePath("/admin/news");
