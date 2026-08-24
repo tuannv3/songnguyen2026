@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ChevronRight, CalendarDays, User } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/language-provider";
 import type { NewsPost } from "@/lib/data/news";
@@ -58,6 +59,12 @@ export function NewsDetailContent({ post, related }: { post: NewsPost; related: 
             </span>
             <span>{post.readingMinutes} {dict.common.minutesRead}</span>
           </div>
+
+          {post.image ? (
+            <div className="relative mt-8 h-56 w-full overflow-hidden rounded-2xl md:h-80">
+              <Image src={post.image} alt="" fill sizes="(min-width: 768px) 768px, 100vw" className="object-cover" />
+            </div>
+          ) : null}
 
           <div className="mt-8 space-y-5">
             {post.content.map((paragraph) => (

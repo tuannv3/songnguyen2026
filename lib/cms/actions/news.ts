@@ -3,7 +3,8 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/db/client";
-import { str, num, parseRepeatableField } from "@/lib/cms/form-utils";
+import { str, num, file, parseRepeatableField } from "@/lib/cms/form-utils";
+import { resolveImageField } from "@/lib/cms/upload";
 import type { ActionState } from "@/lib/cms/actions/types";
 
 function readNewsFields(formData: FormData) {
@@ -33,8 +34,9 @@ export async function createNewsPost(_prevState: ActionState, formData: FormData
   if (!fields.slug) {
     return { ok: false, message: "Vui lòng nhập slug bài viết." };
   }
+  const image = await resolveImageField(file(formData, "image"), "news", null);
   try {
-    await prisma.newsPost.create({ data: fields });
+    await prisma.newsPost.create({ data: { ...fields, image } });
   } catch {
     return { ok: false, message: "Slug đã tồn tại, vui lòng chọn slug khác." };
   }
@@ -50,8 +52,9 @@ export async function updateNewsPost(
 ): Promise<ActionState> {
   const existing = await prisma.newsPost.findUniqueOrThrow({ where: { id } });
   const fields = readNewsFields(formData);
+  const image = await resolveImageField(file(formData, "image"), "news", existing.image);
   try {
-    await prisma.newsPost.update({ where: { id }, data: fields });
+    await prisma.newsPost.update({ where: { id }, data: { ...fields, image } });
   } catch {
     return { ok: false, message: "Slug đã tồn tại, vui lòng chọn slug khác." };
   }

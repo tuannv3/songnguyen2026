@@ -16,6 +16,7 @@ function mapNewsPost(row: NewsPostRow): NewsPost {
     category: { vi: row.categoryVi, en: row.categoryEn },
     accentColor: row.accentColor,
     readingMinutes: row.readingMinutes,
+    image: row.image,
   };
 }
 

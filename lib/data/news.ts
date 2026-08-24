@@ -10,4 +10,5 @@ export type NewsPost = {
   category: Bilingual;
   accentColor: string;
   readingMinutes: number;
+  image?: string | null;
 };

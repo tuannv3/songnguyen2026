@@ -4,6 +4,7 @@ import { useActionState } from "react";
 import { AdminInput } from "@/components/admin/admin-input";
 import { BilingualField } from "@/components/admin/bilingual-field";
 import { RepeatableFieldList } from "@/components/admin/repeatable-field-list";
+import { ImageUploadField } from "@/components/admin/image-upload-field";
 import { FormMessage } from "@/components/admin/form-message";
 import { SaveButton } from "@/components/admin/save-button";
 import type { ActionState } from "@/lib/cms/actions/types";
@@ -23,6 +24,7 @@ type NewsDefaults = {
   categoryEn: string;
   accentColor: string;
   readingMinutes: number;
+  image?: string | null;
 };
 
 const emptyDefaults: NewsDefaults = {
@@ -40,6 +42,7 @@ const emptyDefaults: NewsDefaults = {
   categoryEn: "",
   accentColor: "#2F6F65",
   readingMinutes: 3,
+  image: null,
 };
 
 export function NewsForm({
@@ -73,6 +76,8 @@ export function NewsForm({
 
       <BilingualField label="Tiêu đề" nameVi="titleVi" nameEn="titleEn" defaultValueVi={defaults.titleVi} defaultValueEn={defaults.titleEn} required />
       <BilingualField label="Tóm tắt" nameVi="excerptVi" nameEn="excerptEn" defaultValueVi={defaults.excerptVi} defaultValueEn={defaults.excerptEn} as="textarea" required />
+
+      <ImageUploadField name="image" label="Ảnh đại diện bài viết" defaultImageUrl={defaults.image} />
 
       <RepeatableFieldList
         name="content"
