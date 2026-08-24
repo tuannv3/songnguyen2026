@@ -1,6 +1,6 @@
 import type { Bilingual } from "@/lib/i18n/types";
 
-export type ProductCategory = "single" | "blend" | "gift" | "accessory" | "car";
+export type ProductCategory = "single" | "blend" | "gift" | "accessory" | "car" | "sachet" | "pillow";
 
 export type Product = {
   slug: string;
@@ -32,4 +32,6 @@ export const categoryLabels: Record<ProductCategory, Bilingual> = {
   gift: { vi: "Bộ quà tặng doanh nghiệp", en: "Corporate Gift Sets" },
   accessory: { vi: "Phụ kiện khuếch tán", en: "Diffuser Accessories" },
   car: { vi: "Tinh dầu treo xe & khuếch tán", en: "Car & Diffuser Scents" },
+  sachet: { vi: "Túi thơm tinh dầu", en: "Scented Sachets" },
+  pillow: { vi: "Gối thảo mộc mát-xa Chakra", en: "Chakra Herbal Massage Pillows" },
 };

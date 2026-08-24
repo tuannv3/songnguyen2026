@@ -109,6 +109,8 @@ export function ProductForm({
           <AdminSelect id="category" name="category" defaultValue={defaults.category} className="mt-2">
             <option value="single">Tinh dầu đơn</option>
             <option value="blend">Tinh dầu phối hương</option>
+            <option value="sachet">Túi thơm tinh dầu</option>
+            <option value="pillow">Gối thảo mộc mát-xa Chakra</option>
             <option value="gift">Bộ quà tặng doanh nghiệp</option>
             <option value="accessory">Phụ kiện khuếch tán</option>
             <option value="car">Treo xe & khuếch tán</option>
