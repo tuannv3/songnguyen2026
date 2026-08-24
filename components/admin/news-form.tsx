@@ -5,6 +5,7 @@ import { AdminInput } from "@/components/admin/admin-input";
 import { BilingualField } from "@/components/admin/bilingual-field";
 import { RepeatableFieldList } from "@/components/admin/repeatable-field-list";
 import { ImageUploadField } from "@/components/admin/image-upload-field";
+import { ParagraphImageField } from "@/components/admin/paragraph-image-field";
 import { FormMessage } from "@/components/admin/form-message";
 import { SaveButton } from "@/components/admin/save-button";
 import type { ActionState } from "@/lib/cms/actions/types";
@@ -17,6 +18,7 @@ type NewsDefaults = {
   excerptEn: string;
   contentVi: unknown;
   contentEn: unknown;
+  contentImages: unknown;
   date: string;
   authorVi: string;
   authorEn: string;
@@ -35,6 +37,7 @@ const emptyDefaults: NewsDefaults = {
   excerptEn: "",
   contentVi: [],
   contentEn: [],
+  contentImages: [],
   date: new Date().toISOString().slice(0, 10),
   authorVi: "Đội ngũ Song Nguyên",
   authorEn: "Song Nguyên Team",
@@ -55,7 +58,12 @@ export function NewsForm({
   const [state, formAction] = useActionState(action, null);
   const contentVi = (defaults.contentVi as string[] | null) ?? [];
   const contentEn = (defaults.contentEn as string[] | null) ?? [];
-  const content = contentVi.map((vi, i) => ({ vi, en: contentEn[i] ?? "" }));
+  const contentImages = (defaults.contentImages as (string | null)[] | null) ?? [];
+  const content = contentVi.map((vi, i) => ({
+    vi,
+    en: contentEn[i] ?? "",
+    imageExisting: contentImages[i] ?? "",
+  }));
 
   return (
     <form action={formAction} className="space-y-6">
@@ -83,9 +91,16 @@ export function NewsForm({
         name="content"
         label="Nội dung bài viết (từng đoạn văn)"
         defaultItems={content}
-        emptyItem={{ vi: "", en: "" }}
-        renderFields={({ item, fieldName }) => (
-          <BilingualField label="Đoạn văn" nameVi={fieldName("vi")} nameEn={fieldName("en")} defaultValueVi={item.vi} defaultValueEn={item.en} as="textarea" />
+        emptyItem={{ vi: "", en: "", imageExisting: "" }}
+        renderFields={({ index, item, fieldName }) => (
+          <div className="space-y-4">
+            <BilingualField label="Đoạn văn" nameVi={fieldName("vi")} nameEn={fieldName("en")} defaultValueVi={item.vi} defaultValueEn={item.en} as="textarea" />
+            <ParagraphImageField
+              existingName={fieldName("imageExisting")}
+              newName={`content.${index}.imageNew`}
+              defaultImageUrl={item.imageExisting}
+            />
+          </div>
         )}
       />
 

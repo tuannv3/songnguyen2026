@@ -6,11 +6,12 @@ type NewsPostRow = Awaited<ReturnType<typeof prisma.newsPost.findMany>>[number];
 function mapNewsPost(row: NewsPostRow): NewsPost {
   const contentVi = row.contentVi as string[];
   const contentEn = row.contentEn as string[];
+  const contentImages = row.contentImages as (string | null)[];
   return {
     slug: row.slug,
     title: { vi: row.titleVi, en: row.titleEn },
     excerpt: { vi: row.excerptVi, en: row.excerptEn },
-    content: contentVi.map((vi, i) => ({ vi, en: contentEn[i] ?? "" })),
+    content: contentVi.map((vi, i) => ({ vi, en: contentEn[i] ?? "", image: contentImages[i] ?? null })),
     date: row.date,
     author: { vi: row.authorVi, en: row.authorEn },
     category: { vi: row.categoryVi, en: row.categoryEn },

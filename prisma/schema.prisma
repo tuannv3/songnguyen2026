@@ -82,6 +82,7 @@ model NewsPost {
   excerptEn      String
   contentVi      Json
   contentEn      Json
+  contentImages  Json     @default("[]")
   date           String
   authorVi       String
   authorEn       String

@@ -4,7 +4,7 @@ export type NewsPost = {
   slug: string;
   title: Bilingual;
   excerpt: Bilingual;
-  content: Bilingual[];
+  content: (Bilingual & { image?: string | null })[];
   date: string; // ISO
   author: Bilingual;
   category: Bilingual;

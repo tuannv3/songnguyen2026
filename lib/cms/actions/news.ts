@@ -7,10 +7,16 @@ import { str, num, file, parseRepeatableField } from "@/lib/cms/form-utils";
 import { resolveImageField } from "@/lib/cms/upload";
 import type { ActionState } from "@/lib/cms/actions/types";
 
-function readNewsFields(formData: FormData) {
-  const content = parseRepeatableField(formData, "content", ["vi", "en"] as const).filter(
-    (p) => p.vi || p.en
+async function readNewsFields(formData: FormData) {
+  const rawContent = parseRepeatableField(formData, "content", ["vi", "en", "imageExisting"] as const);
+  const contentRows = await Promise.all(
+    rawContent.map(async (row, index) => {
+      const newFile = file(formData, `content.${index}.imageNew`);
+      const image = await resolveImageField(newFile, "news", row.imageExisting || null);
+      return { vi: row.vi, en: row.en, image };
+    })
   );
+  const content = contentRows.filter((p) => p.vi || p.en);
   return {
     slug: str(formData, "slug"),
     titleVi: str(formData, "titleVi"),
@@ -19,6 +25,7 @@ function readNewsFields(formData: FormData) {
     excerptEn: str(formData, "excerptEn"),
     contentVi: content.map((p) => p.vi),
     contentEn: content.map((p) => p.en),
+    contentImages: content.map((p) => p.image),
     date: str(formData, "date"),
     authorVi: str(formData, "authorVi") || "Đội ngũ Song Nguyên",
     authorEn: str(formData, "authorEn") || "Song Nguyên Team",
@@ -30,7 +37,7 @@ function readNewsFields(formData: FormData) {
 }
 
 export async function createNewsPost(_prevState: ActionState, formData: FormData): Promise<ActionState> {
-  const fields = readNewsFields(formData);
+  const fields = await readNewsFields(formData);
   if (!fields.slug) {
     return { ok: false, message: "Vui lòng nhập slug bài viết." };
   }
@@ -51,7 +58,7 @@ export async function updateNewsPost(
   formData: FormData
 ): Promise<ActionState> {
   const existing = await prisma.newsPost.findUniqueOrThrow({ where: { id } });
-  const fields = readNewsFields(formData);
+  const fields = await readNewsFields(formData);
   const image = await resolveImageField(file(formData, "image"), "news", existing.image);
   try {
     await prisma.newsPost.update({ where: { id }, data: { ...fields, image } });

@@ -68,9 +68,20 @@ export function NewsDetailContent({ post, related }: { post: NewsPost; related: 
 
           <div className="mt-8 space-y-5">
             {post.content.map((paragraph) => (
-              <p key={paragraph[locale]} className="text-base leading-relaxed text-ink/80">
-                {paragraph[locale]}
-              </p>
+              <div key={paragraph[locale]}>
+                <p className="text-base leading-relaxed text-ink/80">{paragraph[locale]}</p>
+                {paragraph.image ? (
+                  <div className="relative mt-4 h-56 w-full overflow-hidden rounded-2xl md:h-72">
+                    <Image
+                      src={paragraph.image}
+                      alt=""
+                      fill
+                      sizes="(min-width: 768px) 768px, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
+                ) : null}
+              </div>
             ))}
           </div>
         </Container>
