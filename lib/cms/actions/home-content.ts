@@ -9,10 +9,11 @@ import type { ActionState } from "@/lib/cms/actions/types";
 export async function updateHomeContent(_prevState: ActionState, formData: FormData): Promise<ActionState> {
   const existing = await prisma.homeContent.findUniqueOrThrow({ where: { id: "singleton" } });
   const philosophyImage = await resolveImageField(file(formData, "philosophyImage"), "home", existing.philosophyImage);
+  const scienceImage = await resolveImageField(file(formData, "scienceImage"), "home", existing.scienceImage);
 
   await prisma.homeContent.update({
     where: { id: "singleton" },
-    data: { philosophyImage },
+    data: { philosophyImage, scienceImage },
   });
 
   revalidatePath("/");

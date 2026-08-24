@@ -229,5 +229,6 @@ model HomeStats {
 model HomeContent {
   id              String   @id @default("singleton")
   philosophyImage String?
+  scienceImage    String?
   updatedAt       DateTime @updatedAt
 }

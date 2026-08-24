@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { FlaskConical, ShieldCheck, Award, Sparkles } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/language-provider";
 import { Container } from "@/components/ui/container";
@@ -42,7 +43,7 @@ const items = [
   },
 ];
 
-export function Science() {
+export function Science({ image }: { image?: string | null }) {
   const { dict, locale } = useLanguage();
 
   return (
@@ -56,8 +57,18 @@ export function Science() {
         aria-hidden="true"
       />
       <Container className="relative grid grid-cols-1 items-center gap-14 lg:grid-cols-[0.9fr_1.1fr]">
-        <ScrollReveal direction="left" className="order-2 flex items-center justify-center gap-6 lg:order-1">
-          <ProductBottle color="#4A8E83" className="h-72 w-auto drop-shadow-2xl md:h-96" />
+        <ScrollReveal direction="left" className="relative order-2 flex aspect-square items-center justify-center gap-6 lg:order-1">
+          {image ? (
+            <Image
+              src={image}
+              alt=""
+              fill
+              sizes="(min-width: 1024px) 40vw, 90vw"
+              className="rounded-[2rem] object-cover"
+            />
+          ) : (
+            <ProductBottle color="#4A8E83" className="h-72 w-auto drop-shadow-2xl md:h-96" />
+          )}
         </ScrollReveal>
 
         <ScrollReveal direction="right" className="order-1 lg:order-2">

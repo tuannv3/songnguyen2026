@@ -9,7 +9,7 @@ export default async function AdminHomeContentPage() {
       <h1 className="font-serif-display text-2xl text-ink">Hình ảnh trang chủ</h1>
       <p className="mt-1 text-sm text-muted-foreground">Các hình minh hoạ có thể thay bằng ảnh thật của bạn.</p>
       <div className="mt-6 max-w-2xl rounded-xl border border-border bg-card p-6 shadow-soft">
-        <HomeContentForm philosophyImage={content.philosophyImage} />
+        <HomeContentForm philosophyImage={content.philosophyImage} scienceImage={content.scienceImage} />
       </div>
     </div>
   );
