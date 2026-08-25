@@ -54,7 +54,6 @@ export const dictionaries = {
       hotlineLabel: "Hotline",
       emailLabel: "Email",
       workingHours: "Giờ làm việc",
-      legalNote: "Nội dung liên hệ trên trang là thông tin tạm thời, sẽ được cập nhật chính thức.",
     },
     carousel: {
       regionLabel: "Băng giới thiệu",
@@ -205,7 +204,6 @@ export const dictionaries = {
       hotlineLabel: "Hotline",
       emailLabel: "Email",
       workingHours: "Working Hours",
-      legalNote: "Contact details shown are placeholders and will be updated with official information.",
     },
     carousel: {
       regionLabel: "Featured highlights",

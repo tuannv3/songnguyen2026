@@ -139,11 +139,10 @@ export function SiteFooter({ settings }: { settings: Awaited<ReturnType<typeof g
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-white/45 md:flex-row md:items-center md:justify-between">
+        <div className="mt-14 border-t border-white/10 pt-6 text-xs text-white/45">
           <p>
             © {new Date().getFullYear()} Song Nguyên Essential Oils. {dict.footer.rightsReserved}
           </p>
-          <p>{dict.footer.legalNote}</p>
         </div>
       </Container>
     </footer>
