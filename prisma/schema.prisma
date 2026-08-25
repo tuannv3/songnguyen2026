@@ -125,16 +125,37 @@ model AboutContent {
   subheadingEn      String
   storyHeadingVi    String
   storyHeadingEn    String
-  storyBodyVi       Json
-  storyBodyEn       Json
-  storyImage        String?
+  storySubheadingVi String   @default("")
+  storySubheadingEn String   @default("")
+  storySections     Json     @default("[]")
+
+  visionTaglineVi   String   @default("")
+  visionTaglineEn   String   @default("")
+  visionSubtitleVi  String   @default("")
+  visionSubtitleEn  String   @default("")
+  visionPoints      Json     @default("[]")
+
   missionHeadingVi  String
   missionHeadingEn  String
   missionBodyVi     String
   missionBodyEn     String
+  missionIntroVi    String   @default("")
+  missionIntroEn    String   @default("")
+  missionGoals      Json     @default("[]")
+  missionImage      String?
+  missionImageCaptionVi String @default("")
+  missionImageCaptionEn String @default("")
+
   valuesHeadingVi   String
   valuesHeadingEn   String
   values            Json
+
+  promiseHeadingVi  String   @default("")
+  promiseHeadingEn  String   @default("")
+  promiseLines      Json     @default("[]")
+  promiseClosingVi  String   @default("")
+  promiseClosingEn  String   @default("")
+
   timelineHeadingVi String
   timelineHeadingEn String
   timeline          Json
