@@ -22,7 +22,7 @@ export async function sendNotificationEmail({ subject, html }: { subject: string
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "Song Nguyên Website <onboarding@resend.dev>",
+        from: "Song Nguyên Website <thongbao@tinhdausongnguyen.com>",
         to: NOTIFICATION_EMAIL,
         subject,
         html,
