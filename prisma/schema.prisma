@@ -250,8 +250,18 @@ model HomeStats {
 /// Singleton row (id = "singleton") holding homepage section images that would
 /// otherwise be static illustrations (e.g. the "Triết lý thương hiệu" graphic).
 model HomeContent {
-  id              String   @id @default("singleton")
-  philosophyImage String?
-  scienceImage    String?
-  updatedAt       DateTime @updatedAt
+  id                   String   @id @default("singleton")
+  philosophyImage      String?
+  philosophyHeadingVi  String   @default("")
+  philosophyHeadingEn  String   @default("")
+  philosophyBodyVi     String   @default("")
+  philosophyBodyEn     String   @default("")
+  philosophyPoint1Vi   String   @default("")
+  philosophyPoint1En   String   @default("")
+  philosophyPoint2Vi   String   @default("")
+  philosophyPoint2En   String   @default("")
+  philosophyPoint3Vi   String   @default("")
+  philosophyPoint3En   String   @default("")
+  scienceImage         String?
+  updatedAt            DateTime @updatedAt
 }

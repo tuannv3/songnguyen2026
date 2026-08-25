@@ -25,7 +25,12 @@ export default async function Home() {
     <>
       <Hero slides={heroSlides} stats={homeStats.items} />
       <BestSellers products={products} />
-      <Philosophy image={homeContent.philosophyImage} />
+      <Philosophy
+        image={homeContent.philosophyImage}
+        heading={homeContent.philosophyHeading}
+        body={homeContent.philosophyBody}
+        points={homeContent.philosophyPoints}
+      />
       <Science image={homeContent.scienceImage} />
       <Testimonials />
       <CorporateTeaser />

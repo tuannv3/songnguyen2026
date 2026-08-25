@@ -94,9 +94,6 @@ export const dictionaries = {
       bestSellersHeading: "Sản phẩm bán chạy",
       bestSellersSub: "Những dòng tinh dầu được khách hàng và đối tác tin chọn nhiều nhất.",
       philosophyEyebrow: "Triết lý thương hiệu",
-      philosophyHeading: "Tinh khiết từ gốc, trọn vẹn từng giọt",
-      philosophyBody:
-        "Mỗi giọt tinh dầu Song Nguyên là kết tinh của quy trình canh tác hữu cơ, chưng cất lạnh và kiểm định nghiêm ngặt — để mang đến sản phẩm an toàn, nguyên chất và bền vững cho sức khỏe cộng đồng.",
       philosophyCta: "Tìm hiểu quy trình sản xuất",
       ingredientsEyebrow: "Khoa học & thiên nhiên",
       ingredientsHeading: "Được chưng cất bằng công nghệ hiện đại",
@@ -248,9 +245,6 @@ export const dictionaries = {
       bestSellersHeading: "Bestsellers",
       bestSellersSub: "The essential oils our customers and partners choose most.",
       philosophyEyebrow: "Our Philosophy",
-      philosophyHeading: "Pure from the Root, Whole in Every Drop",
-      philosophyBody:
-        "Every drop of Song Nguyên essential oil is the result of organic farming, cold distillation and rigorous testing — delivering safe, pure and sustainable products for community wellbeing.",
       philosophyCta: "Discover our process",
       ingredientsEyebrow: "Science & Nature",
       ingredientsHeading: "Distilled with Modern Technology",
