@@ -9,6 +9,7 @@ import type { getSiteSettings } from "@/lib/cms/settings";
 import { Logo } from "@/components/icons/logo";
 import { Container } from "@/components/ui/container";
 import { FacebookIcon, InstagramIcon, YoutubeIcon, ZaloIcon } from "@/components/icons/social";
+import { subscribeNewsletter } from "@/lib/cms/actions/newsletter";
 
 const navItems = [
   { href: "/", key: "home" as const },
@@ -23,7 +24,7 @@ const navItems = [
 export function SiteFooter({ settings }: { settings: Awaited<ReturnType<typeof getSiteSettings>> }) {
   const { dict, locale } = useLanguage();
   const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   const socials = [
     { icon: FacebookIcon, label: "Facebook", href: settings.facebookUrl },
@@ -32,11 +33,17 @@ export function SiteFooter({ settings }: { settings: Awaited<ReturnType<typeof g
     { icon: ZaloIcon, label: "Zalo", href: settings.zaloUrl },
   ];
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!email) return;
-    setSubmitted(true);
-    setEmail("");
+    setStatus("sending");
+    const result = await subscribeNewsletter(email);
+    if (result.ok) {
+      setStatus("sent");
+      setEmail("");
+    } else {
+      setStatus("error");
+    }
   }
 
   return (
@@ -110,7 +117,7 @@ export function SiteFooter({ settings }: { settings: Awaited<ReturnType<typeof g
           <div>
             <h3 className="font-serif-display text-lg text-white">{dict.footer.newsletterHeading}</h3>
             <p className="mt-5 text-sm text-white/60">{dict.footer.newsletterText}</p>
-            {submitted ? (
+            {status === "sent" ? (
               <p role="status" className="mt-4 rounded-xl border border-accent/30 bg-accent/10 px-4 py-3 text-sm text-accent-light">
                 {dict.common.sentSuccess}
               </p>
@@ -130,10 +137,14 @@ export function SiteFooter({ settings }: { settings: Awaited<ReturnType<typeof g
                 />
                 <button
                   type="submit"
-                  className="w-full cursor-pointer rounded-full bg-accent px-4 py-2.5 text-sm font-medium text-on-accent transition-colors hover:bg-accent-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
+                  disabled={status === "sending"}
+                  className="w-full cursor-pointer rounded-full bg-accent px-4 py-2.5 text-sm font-medium text-on-accent transition-colors hover:bg-accent-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink disabled:opacity-60"
                 >
-                  {dict.footer.newsletterButton}
+                  {status === "sending" ? dict.common.sending : dict.footer.newsletterButton}
                 </button>
+                {status === "error" ? (
+                  <p className="text-xs text-destructive">{dict.footer.newsletterError}</p>
+                ) : null}
               </form>
             )}
           </div>

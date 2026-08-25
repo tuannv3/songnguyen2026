@@ -144,7 +144,7 @@ export function CartDrawer() {
               </div>
               <p className="mt-1.5 text-xs text-muted-foreground">{dict.cart.subtotalNote}</p>
               <Link
-                href="/lien-he"
+                href="/dat-hang"
                 onClick={close}
                 className="mt-4 flex w-full items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-medium text-on-primary transition-colors hover:bg-primary-dark"
               >

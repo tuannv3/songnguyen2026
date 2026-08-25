@@ -10,11 +10,14 @@ const cards = [
 ];
 
 export default async function AdminDashboardPage() {
-  const [heroSlides, products, newsPosts, jobPostings] = await Promise.all([
+  const [heroSlides, products, newsPosts, jobPostings, totalOrders, newOrders, subscribers] = await Promise.all([
     prisma.heroSlide.count(),
     prisma.product.count(),
     prisma.newsPost.count(),
     prisma.jobPosting.count(),
+    prisma.order.count(),
+    prisma.order.count({ where: { status: "new" } }),
+    prisma.newsletterSubscriber.count(),
   ]);
   const counts = { heroSlides, products, newsPosts, jobPostings };
 
@@ -26,6 +29,36 @@ export default async function AdminDashboardPage() {
       </p>
 
       <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <Link
+          href="/admin/orders"
+          className="group flex items-center justify-between rounded-xl border border-primary/30 bg-primary/5 p-5 shadow-soft transition-colors hover:border-primary/50"
+        >
+          <div>
+            <p className="text-sm text-muted-foreground">
+              Đơn hàng{newOrders > 0 ? ` · ${newOrders} mới` : ""}
+            </p>
+            <p className="font-serif-display mt-1 text-3xl text-ink">{totalOrders}</p>
+          </div>
+          <ArrowRight
+            className="h-5 w-5 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary"
+            aria-hidden="true"
+          />
+        </Link>
+
+        <Link
+          href="/admin/newsletter"
+          className="group flex items-center justify-between rounded-xl border border-border bg-card p-5 shadow-soft transition-colors hover:border-primary/40"
+        >
+          <div>
+            <p className="text-sm text-muted-foreground">Đăng ký nhận tin</p>
+            <p className="font-serif-display mt-1 text-3xl text-ink">{subscribers}</p>
+          </div>
+          <ArrowRight
+            className="h-5 w-5 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary"
+            aria-hidden="true"
+          />
+        </Link>
+
         {cards.map((card) => (
           <Link
             key={card.href}
