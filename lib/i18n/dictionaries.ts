@@ -110,7 +110,6 @@ export const dictionaries = {
       ingredientsSub:
         "Kết hợp phương pháp chưng cất hơi nước truyền thống với kiểm định GC-MS hiện đại để đảm bảo độ tinh khiết tối đa trong từng sản phẩm.",
       testimonialsEyebrow: "Khách hàng nói gì",
-      testimonialsHeading: "Niềm tin từ khách hàng & đối tác",
       corporateEyebrow: "Dành cho doanh nghiệp",
       corporateHeading: "Quà tặng doanh nghiệp đậm dấu ấn thương hiệu",
       corporateBody:
@@ -271,7 +270,6 @@ export const dictionaries = {
       ingredientsSub:
         "We combine traditional steam distillation with modern GC-MS testing to ensure maximum purity in every product.",
       testimonialsEyebrow: "What People Say",
-      testimonialsHeading: "Trusted by Customers & Partners",
       corporateEyebrow: "For Businesses",
       corporateHeading: "Corporate Gifts that Carry Your Brand",
       corporateBody:

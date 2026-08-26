@@ -263,6 +263,9 @@ model HomeContent {
   philosophyPoint3Vi   String   @default("")
   philosophyPoint3En   String   @default("")
   scienceImage         String?
+  testimonialsHeadingVi String  @default("")
+  testimonialsHeadingEn String  @default("")
+  testimonials          Json    @default("[]")
   updatedAt            DateTime @updatedAt
 }
 

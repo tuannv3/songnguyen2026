@@ -32,7 +32,7 @@ export default async function Home() {
         points={homeContent.philosophyPoints}
       />
       <Science image={homeContent.scienceImage} />
-      <Testimonials />
+      <Testimonials heading={homeContent.testimonialsHeading} testimonials={homeContent.testimonials} />
       <CorporateTeaser />
       <NewsTeaser posts={newsPosts} />
       <CtaBand />
