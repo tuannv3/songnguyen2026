@@ -159,7 +159,7 @@ export function ProductDetailContent({ product, related }: { product: Product; r
                 rel={product.shopeeUrl ? "noopener noreferrer" : undefined}
                 variant="outline"
                 size="lg"
-                className="border-[#EE4D2D] text-[#EE4D2D] hover:bg-[#EE4D2D] hover:text-white"
+                className="!border-[#EE4D2D] !text-[#EE4D2D] hover:!bg-[#EE4D2D] hover:!text-white"
               >
                 <ExternalLink className="h-4 w-4" />
                 {dict.common.buyOnShopee}

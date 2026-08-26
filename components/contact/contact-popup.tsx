@@ -55,7 +55,13 @@ export function ContactPopup({ settings }: { settings: Awaited<ReturnType<typeof
   ];
 
   return (
-    <div ref={containerRef} className="fixed bottom-6 right-6 z-[60] flex flex-col items-end gap-3">
+    <div
+      ref={containerRef}
+      className={clsx(
+        "fixed bottom-6 right-6 z-[60] flex flex-col items-end gap-3",
+        !open && "pointer-events-none"
+      )}
+    >
       {items.map(({ key, label, href, Icon, external }, index) => (
         <a
           key={key}
@@ -86,7 +92,7 @@ export function ContactPopup({ settings }: { settings: Awaited<ReturnType<typeof
         aria-expanded={open}
         aria-label={open ? dict.contactPopup.close : dict.contactPopup.label}
         className={clsx(
-          "inline-flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-primary text-on-primary shadow-lift transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+          "pointer-events-auto inline-flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-primary text-on-primary shadow-lift transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
           !open && "animate-pulse-ring"
         )}
       >

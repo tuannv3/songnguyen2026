@@ -71,12 +71,24 @@ export function ContactContent({ settings }: { settings: Awaited<ReturnType<type
               ))}
             </div>
 
-            <div className="mt-8 flex aspect-video items-center justify-center rounded-2xl border border-dashed border-border bg-muted/60 text-center">
-              <div className="flex flex-col items-center gap-2 px-6 text-muted-foreground">
-                <MapPinned className="h-6 w-6" aria-hidden="true" />
-                <p className="text-xs leading-relaxed">{dict.contact.mapNote}</p>
+            {settings.address.vi ? (
+              <div className="mt-8 aspect-video overflow-hidden rounded-2xl border border-border">
+                <iframe
+                  title={dict.contact.formHeading}
+                  src={`https://www.google.com/maps?q=${encodeURIComponent(settings.address.vi)}&output=embed`}
+                  className="h-full w-full"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
               </div>
-            </div>
+            ) : (
+              <div className="mt-8 flex aspect-video items-center justify-center rounded-2xl border border-dashed border-border bg-muted/60 text-center">
+                <div className="flex flex-col items-center gap-2 px-6 text-muted-foreground">
+                  <MapPinned className="h-6 w-6" aria-hidden="true" />
+                  <p className="text-xs leading-relaxed">{dict.contact.mapNote}</p>
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="rounded-3xl border border-border bg-card p-6 shadow-soft md:p-10">
