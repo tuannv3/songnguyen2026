@@ -10,7 +10,7 @@ import type { getCareersPageContent } from "@/lib/cms/careers";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { PageHero } from "@/components/sections/page-hero";
-import { InquiryForm } from "@/components/sections/inquiry-form";
+import { JobApplicationForm } from "@/components/sections/job-application-form";
 
 const benefitIcons = [TrendingUp, Wallet, Users, Leaf];
 
@@ -23,6 +23,7 @@ export function CareersContent({
 }) {
   const { dict, locale } = useLanguage();
   const [openSlug, setOpenSlug] = useState<string | null>(jobs[0]?.slug ?? null);
+  const [selectedPosition, setSelectedPosition] = useState<string | null>(null);
 
   return (
     <>
@@ -112,6 +113,7 @@ export function CareersContent({
                         </ul>
                         <a
                           href="#ung-tuyen"
+                          onClick={() => setSelectedPosition(job.title[locale])}
                           className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
                         >
                           {dict.careers.applyCta}
@@ -132,7 +134,11 @@ export function CareersContent({
         <Container className="mx-auto max-w-3xl">
           <SectionHeading align="center" title={dict.careers.applyCta} className="mx-auto" />
           <div className="mt-10 rounded-3xl border border-border bg-card p-6 shadow-soft md:p-10">
-            <InquiryForm showCompany={false} />
+            <JobApplicationForm
+              key={selectedPosition ?? "default"}
+              positions={jobs.map((job) => job.title[locale])}
+              defaultPosition={selectedPosition}
+            />
           </div>
         </Container>
       </section>

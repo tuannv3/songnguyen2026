@@ -10,7 +10,17 @@ const cards = [
 ];
 
 export default async function AdminDashboardPage() {
-  const [heroSlides, products, newsPosts, jobPostings, totalOrders, newOrders, subscribers] = await Promise.all([
+  const [
+    heroSlides,
+    products,
+    newsPosts,
+    jobPostings,
+    totalOrders,
+    newOrders,
+    subscribers,
+    totalApplications,
+    newApplications,
+  ] = await Promise.all([
     prisma.heroSlide.count(),
     prisma.product.count(),
     prisma.newsPost.count(),
@@ -18,6 +28,8 @@ export default async function AdminDashboardPage() {
     prisma.order.count(),
     prisma.order.count({ where: { status: "new" } }),
     prisma.newsletterSubscriber.count(),
+    prisma.jobApplication.count(),
+    prisma.jobApplication.count({ where: { status: "new" } }),
   ]);
   const counts = { heroSlides, products, newsPosts, jobPostings };
 
@@ -38,6 +50,22 @@ export default async function AdminDashboardPage() {
               Đơn hàng{newOrders > 0 ? ` · ${newOrders} mới` : ""}
             </p>
             <p className="font-serif-display mt-1 text-3xl text-ink">{totalOrders}</p>
+          </div>
+          <ArrowRight
+            className="h-5 w-5 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary"
+            aria-hidden="true"
+          />
+        </Link>
+
+        <Link
+          href="/admin/job-applications"
+          className="group flex items-center justify-between rounded-xl border border-primary/30 bg-primary/5 p-5 shadow-soft transition-colors hover:border-primary/50"
+        >
+          <div>
+            <p className="text-sm text-muted-foreground">
+              Hồ sơ ứng tuyển{newApplications > 0 ? ` · ${newApplications} mới` : ""}
+            </p>
+            <p className="font-serif-display mt-1 text-3xl text-ink">{totalApplications}</p>
           </div>
           <ArrowRight
             className="h-5 w-5 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary"

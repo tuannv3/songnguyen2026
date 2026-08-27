@@ -148,6 +148,10 @@ export const dictionaries = {
       location: "Địa điểm",
       type: "Hình thức",
       applyCta: "Gửi hồ sơ ứng tuyển",
+      positionLabel: "Vị trí ứng tuyển",
+      positionOther: "Vị trí khác",
+      successHeading: "Đã gửi hồ sơ ứng tuyển!",
+      successBody: "Cảm ơn bạn đã quan tâm đến Song Nguyên. Đội ngũ tuyển dụng sẽ xem xét hồ sơ và liên hệ trong thời gian sớm nhất.",
     },
     contact: {
       eyebrow: "Kết nối với chúng tôi",
@@ -308,6 +312,10 @@ export const dictionaries = {
       location: "Location",
       type: "Type",
       applyCta: "Submit Application",
+      positionLabel: "Position",
+      positionOther: "Other Position",
+      successHeading: "Application Sent!",
+      successBody: "Thank you for your interest in Song Nguyên. Our recruitment team will review your application and get in touch shortly.",
     },
     contact: {
       eyebrow: "Get in Touch",

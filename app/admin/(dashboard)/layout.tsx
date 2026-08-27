@@ -8,6 +8,7 @@ import { logout } from "@/lib/cms/actions/auth";
 const navItems = [
   { href: "/admin", label: "Tổng quan" },
   { href: "/admin/orders", label: "Đơn hàng" },
+  { href: "/admin/job-applications", label: "Hồ sơ ứng tuyển" },
   { href: "/admin/newsletter", label: "Đăng ký nhận tin" },
   { href: "/admin/hero-slides", label: "Slide trang chủ" },
   { href: "/admin/home-stats", label: "Chỉ số thống kê" },
