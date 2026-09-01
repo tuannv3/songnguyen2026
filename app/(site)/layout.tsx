@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { CartDrawer } from "@/components/cart/cart-drawer";
 import { ContactPopup } from "@/components/contact/contact-popup";
+import { PageViewTracker } from "@/components/analytics/page-view-tracker";
 import { getSiteSettings } from "@/lib/cms/settings";
 
 export default async function SiteLayout({ children }: { children: ReactNode }) {
@@ -11,6 +12,7 @@ export default async function SiteLayout({ children }: { children: ReactNode }) 
 
   return (
     <CartProvider>
+      <PageViewTracker />
       <SiteHeader />
       <main className="flex-1">{children}</main>
       <SiteFooter settings={settings} />
